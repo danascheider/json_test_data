@@ -51,6 +51,26 @@ Feature: Support nested objects and arrays
       {"users":["string"]}
       """
 
+  Scenario: Array in an array
+    Given the following JSON schema:
+      """json
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+      """
+    When I run the JSON data generator
+    Then the JSON output should be:
+      """json
+      [["string"]]
+      """
+
   Scenario: More complex nested object
     Given the following JSON schema:
       """json
