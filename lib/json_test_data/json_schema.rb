@@ -13,14 +13,14 @@ module JsonTestData
     end
 
     private
+      def object_of_type(type)
+        type == "number" ? 1 : "string"
+      end
 
       def generate_object
         obj = {}
 
-        schema.fetch(:properties).each  do |key, value|
-          v = value.is_a?(Hash) ? value.fetch(:type) : value
-          obj[key] = v
-        end
+        schema.fetch(:properties).each {|k, v| obj[k] = object_of_type(v.fetch(:type)) }
 
         obj.to_json
       end
