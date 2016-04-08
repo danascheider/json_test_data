@@ -7,7 +7,21 @@ module JsonTestData
     end
 
     def generate_example
-      @schema.fetch(:type) == "object" ? {}.to_json : [].to_json
+      @schema.fetch(:type) == "object" ? generate_object : generate_array
     end
+
+    private
+
+      def generate_object
+        obj = {}
+
+        schema.fetch(:properties).each  {|key, value| obj[key] = value.fetch(:type) }
+
+        obj.to_json
+      end
+
+      def generate_array
+        [].to_json
+      end
   end
 end
