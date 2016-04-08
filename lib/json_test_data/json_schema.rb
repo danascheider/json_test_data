@@ -7,7 +7,7 @@ module JsonTestData
     end
 
     def generate_example
-      @schema.fetch(:type) == "object" ? generate_object(schema) : generate_array(schema)
+      @schema.fetch(:type) == "object" ? generate_object(schema).to_json : generate_array(schema).to_json
     end
 
     private
@@ -28,7 +28,7 @@ module JsonTestData
           obj[k] = v.fetch(:type) == "object" ? generate_object(v) : object_of_type(v.fetch(:type))
         end
 
-        obj.to_json
+        obj
       end
 
       def generate_array(object)
@@ -41,7 +41,7 @@ module JsonTestData
               end
 
         arr << val
-        arr.to_json
+        arr
       end
   end
 end
