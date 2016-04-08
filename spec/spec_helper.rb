@@ -1,6 +1,8 @@
-require 'coveralls'
+require "coveralls"
 
 Coveralls.wear!
+
+require_relative "../lib/json_test_data"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
