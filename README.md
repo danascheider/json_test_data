@@ -1,2 +1,3 @@
-# json_test_data
-JSON schema in, matching JSON data out
+# JSON Test Data Generator
+
+The JSON test data generator takes JSON schema as input and generates test data matching the specification.
