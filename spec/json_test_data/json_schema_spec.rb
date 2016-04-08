@@ -22,9 +22,9 @@ describe JsonTestData::JsonSchema do
         let(:schema) do
           JsonTestData::JsonSchema.new(
             {
-              "$schema"    => "http://json-schema.org/draft-04/schema#",
-              "type"       => "object",
-              "properties" => {}
+              :"$schema"    => "http://json-schema.org/draft-04/schema#",
+              :type         => "object",
+              :properties   => {}
             }.to_json
           )
         end
@@ -43,9 +43,9 @@ describe JsonTestData::JsonSchema do
         let(:schema) do
           JsonTestData::JsonSchema.new(
             {
-              "$schema" => "http://json-schema.org/draft-04/schema#",
-              "type"    => "array",
-              "items"   => []
+              :"$schema" => "http://json-schema.org/draft-04/schema#",
+              :type      => "array",
+              :items     => []
             }.to_json
           )
         end
@@ -101,6 +101,56 @@ describe JsonTestData::JsonSchema do
         end
 
         it "generates the right object" do
+          json_schema = JsonTestData::JsonSchema.new(schema)
+          expect(json_schema.generate_example).to eql output
+        end
+      end
+    end
+
+    describe "data type support" do
+      context "numbers" do
+
+        let(:schema) do
+          {
+            :"$schema"  => "http://json-schema.org/draft-04/schema#",
+            :type       => "object",
+            :properties => {
+              :id => {
+                :type => "number"
+              }
+            }
+          }.to_json
+        end
+
+        let(:output) do
+          {:id => 1}.to_json
+        end
+
+        it "uses the correct data type" do
+          json_schema = JsonTestData::JsonSchema.new(schema)
+          expect(json_schema.generate_example).to eql output
+        end
+      end
+
+      context "booleans" do
+
+        let(:schema) do
+          {
+            :"$schema"  => "http://json-schema.org/draft-04/schema#",
+            :type       => "object",
+            :properties => {
+              :admin => {
+                :type => "boolean"
+              }
+            }
+          }.to_json
+        end
+
+        let(:output) do
+          {:admin => true}.to_json
+        end
+
+        it "uses the correct data type" do
           json_schema = JsonTestData::JsonSchema.new(schema)
           expect(json_schema.generate_example).to eql output
         end

@@ -6,7 +6,9 @@ Feature: Generate test data
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "name": "string"
+          "name": {
+            "type": "string"
+          }
         }
       }
       """
