@@ -45,7 +45,7 @@ describe JsonTestData::JsonSchema do
             {
               :"$schema" => "http://json-schema.org/draft-04/schema#",
               :type      => "array",
-              :items     => []
+              :items     => {}
             }.to_json
           )
         end
@@ -151,6 +151,83 @@ describe JsonTestData::JsonSchema do
         end
 
         it "uses the correct data type" do
+          json_schema = JsonTestData::JsonSchema.new(schema)
+          expect(json_schema.generate_example).to eql output
+        end
+      end
+
+      context "nested objects" do
+        let(:schema) do
+          {
+            :"$schema" => "http://json-schema.org/draft-04/schema#",
+            :type      => "array",
+            :items     => {
+              :type       => "object",
+              :properties => {
+                :id => {
+                  :type => "number"
+                }
+              }
+            }
+          }.to_json
+        end
+
+        let(:output) do
+          [{:id => 1}].to_json
+        end
+
+        it "nests the object" do
+          json_schema = JsonTestData::JsonSchema.new(schema)
+          expect(json_schema.generate_example).to eql output
+        end
+      end
+
+      context "nested arrays" do
+        let(:schema) do
+          {
+            :"$schema"  => "http://json-schema.org/draft-04/schema#",
+            :type       => "object",
+            :properties => {
+              :users => {
+                :type  => "array",
+                :items => {
+                  :type => "string"
+                }
+              }
+            }
+          }.to_json
+        end
+
+        let(:output) do
+          {:users => ["string"]}.to_json
+        end
+
+        it "nests the object" do
+          json_schema = JsonTestData::JsonSchema.new(schema)
+          expect(json_schema.generate_example).to eql output
+        end
+      end
+
+      context "arrays in arrays" do
+
+        let(:schema) do
+          {
+            :"$schema"  => "http://json-schema.org/draft-04/schema#",
+            :type       => "array",
+            :items => {
+              :type => "array",
+              :items => {
+                :type => "string"
+              }
+            }
+          }.to_json
+        end
+
+        let(:output) do
+          [["string"]].to_json
+        end
+
+        it "returns a nested array" do
           json_schema = JsonTestData::JsonSchema.new(schema)
           expect(json_schema.generate_example).to eql output
         end

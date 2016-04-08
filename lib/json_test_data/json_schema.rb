@@ -1,5 +1,3 @@
-require "pry"
-
 module JsonTestData
   class JsonSchema
     attr_accessor :schema
@@ -9,13 +7,15 @@ module JsonTestData
     end
 
     def generate_example
-      @schema.fetch(:type) == "object" ? generate_object : generate_array
+      @schema.fetch(:type) == "object" ? generate_object(schema).to_json : generate_array(schema).to_json
     end
 
     private
       def object_of_type(type)
         case type
-        when "number" || "integer"
+        when "number"
+          1
+        when "integer"
           1
         when "boolean"
           true
@@ -24,23 +24,36 @@ module JsonTestData
         end
       end
 
-      def generate_object
+      def generate_object(object)
         obj = {}
 
-        schema.fetch(:properties).each {|k, v| obj[k] = object_of_type(v.fetch(:type)) }
+        object.fetch(:properties).each do |k, v|
+          obj[k]  = nil unless v.has_key?(:type)
 
-        obj.to_json
-      end
-
-      def generate_array
-        arr = []
-
-        schema.fetch(:items).each do |item|
-          val = item.is_a?(Array) ? object_of_type(item.last) : item
-          arr << val
+          obj[k]  = if v.fetch(:type) == "object"
+                      generate_object(v)
+                    elsif v.fetch(:type) == "array"
+                      generate_array(v)
+                    else
+                      object_of_type(v.fetch(:type))
+                    end
         end
 
-        arr.to_json
+        obj
+      end
+
+      def generate_array(object)
+        return [] unless object.fetch(:items).has_key?(:type)
+
+        val = if object.fetch(:items).fetch(:type) == "object"
+                generate_object(object.fetch(:items))
+              elsif object.fetch(:items).fetch(:type) == "array"
+                generate_array(object.fetch(:items))
+              else
+                object_of_type(object.fetch(:items).fetch(:type))
+              end
+
+        [val].compact
       end
   end
 end
