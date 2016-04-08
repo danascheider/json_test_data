@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake', '~> 10.5'
   s.add_development_dependency 'simplecov', '~> 0.11'
   s.add_development_dependency 'coveralls', '~> 0.7'
+  s.add_development_dependency 'pry', '~> 0.10'
 
   s.rubygems_version   = ">= 1.6.1"
   s.files              = `git ls-files`.split("\n").reject {|path| path =~ /\.gitignore$/ }

@@ -43,5 +43,5 @@ Feature: Generate test data
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      { "name": "string" }
+      {"name":"string"}
       """

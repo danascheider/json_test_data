@@ -1,8 +1,8 @@
 require 'json'
+Dir['json_test_data'].each {|f| require f }
 
 module JsonTestData
   def self.generate!(schema)
-    schema = JSON.parse(schema)
-    schema.fetch("type") == "object" ? {}.to_json : [].to_json
+    JsonSchema.new(schema).generate_example
   end
 end

@@ -1,3 +1,5 @@
+require "pry"
+
 module JsonTestData
   class JsonSchema
     attr_accessor :schema
@@ -15,7 +17,10 @@ module JsonTestData
       def generate_object
         obj = {}
 
-        schema.fetch(:properties).each  {|key, value| obj[key] = value.fetch(:type) }
+        schema.fetch(:properties).each  {|key, value|
+          v = value.is_a?(Hash) ? value.fetch(:type) : value
+          obj[key] = v
+        }
 
         obj.to_json
       end
