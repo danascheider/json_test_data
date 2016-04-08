@@ -14,7 +14,14 @@ module JsonTestData
 
     private
       def object_of_type(type)
-        type == "number" ? 1 : "string"
+        case type
+        when "number" || "integer"
+          1
+        when "boolean"
+          true
+        when "string"
+          "string"
+        end
       end
 
       def generate_object

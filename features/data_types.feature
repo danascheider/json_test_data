@@ -41,3 +41,22 @@ Feature: Handling data types
       """json
       {"id":1}
       """
+
+  Scenario: Booleans
+    Given the following JSON schema:
+      """json
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "admin": {
+            "type": "boolean"
+          }
+        }
+      }
+      """
+    When I run the JSON data generator
+    Then the JSON output should be:
+      """json
+      {"admin":true}
+      """
