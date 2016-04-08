@@ -1,5 +1,6 @@
 require 'json'
-Dir['json_test_data'].each {|f| require f }
+
+require_relative './json_test_data/json_schema'
 
 module JsonTestData
   def self.generate!(schema)
