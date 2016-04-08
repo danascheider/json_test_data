@@ -29,7 +29,7 @@ module JsonTestData
         arr = []
 
         schema.fetch(:items).each do |item|
-          val = item.is_a?(Array) ? item.last : item
+          val = item.is_a?(Array) ? object_of_type(item.last) : item
           arr << val
         end
 
