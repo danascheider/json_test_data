@@ -24,7 +24,6 @@ module JsonTestData
 
       def generate_object(object)
         obj = {}
-
         object.fetch(:properties).each do |k, v|
           obj[k] = v.fetch(:type) == "object" ? generate_object(v) : object_of_type(v.fetch(:type))
         end
@@ -35,11 +34,13 @@ module JsonTestData
       def generate_array(object)
         arr = []
 
-        object.fetch(:items).each do |item|
-          val = item.is_a?(Array) ? object_of_type(item.last) : item
-          arr << val
-        end
+        val = if object.fetch(:items).fetch(:type) == "object"
+                generate_object(object.fetch(:items))
+              else
+                object_of_type(object.fetch(:items).fetch(:type))
+              end
 
+        arr << val
         arr.to_json
       end
   end

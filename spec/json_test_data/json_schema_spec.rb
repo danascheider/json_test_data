@@ -155,6 +155,32 @@ describe JsonTestData::JsonSchema do
           expect(json_schema.generate_example).to eql output
         end
       end
+
+      context "nested objects" do
+        let(:schema) do
+          {
+            :"$schema" => "http://json-schema.org/draft-04/schema#",
+            :type      => "array",
+            :items     => {
+              :type       => "object",
+              :properties => {
+                :id => {
+                  :type => "number"
+                }
+              }
+            }
+          }.to_json
+        end
+
+        let(:output) do
+          [{:id => 1}].to_json
+        end
+
+        it "nests the object" do
+          json_schema = JsonTestData::JsonSchema.new(schema)
+          expect(json_schema.generate_example).to eql output
+        end
+      end
     end
   end
 end
