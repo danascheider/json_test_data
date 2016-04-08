@@ -1,5 +1,3 @@
-require 'pry'
-
 module JsonTestData
   class JsonSchema
     attr_accessor :schema
