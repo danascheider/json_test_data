@@ -17,5 +17,23 @@ describe JsonTestData do
         expect(JsonTestData.generate!(schema)).to eql output
       end
     end
+
+    context "when schema describes an array" do
+      let(:schema) do
+        {
+          "$schema" => "http://json-schema.org/draft-04/schema#",
+          "type"    => "array",
+          "items"   => []
+        }.to_json
+      end
+
+      let(:output) do
+        [].to_json
+      end
+
+      it "generates an object" do
+        expect(JsonTestData.generate!(schema)).to eql output
+      end
+    end
   end
 end
