@@ -28,8 +28,14 @@ module JsonTestData
         obj = {}
 
         object.fetch(:properties).each do |k, v|
-          obj[k] = nil unless v.has_key?(:type)
-          obj[k] = v.fetch(:type) == "object" ? generate_object(v) : object_of_type(v.fetch(:type))
+          obj[k]  = nil unless v.has_key?(:type)
+          obj[k]  = if v.fetch(:type) == "object"
+                      generate_object(v)
+                    elsif v.fetch(:type) == "array"
+                      generate_array(v)
+                    else
+                      object_of_type(v.fetch(:type))
+                    end
         end
 
         obj
