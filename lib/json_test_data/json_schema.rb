@@ -17,16 +17,23 @@ module JsonTestData
       def generate_object
         obj = {}
 
-        schema.fetch(:properties).each  {|key, value|
+        schema.fetch(:properties).each  do |key, value|
           v = value.is_a?(Hash) ? value.fetch(:type) : value
           obj[key] = v
-        }
+        end
 
         obj.to_json
       end
 
       def generate_array
-        [].to_json
+        arr = []
+
+        schema.fetch(:items).each do |item|
+          val = item.is_a?(Array) ? item.last : item
+          arr << val
+        end
+
+        arr.to_json
       end
   end
 end

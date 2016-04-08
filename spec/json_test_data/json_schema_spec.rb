@@ -1,5 +1,6 @@
 describe JsonTestData::JsonSchema do
   describe "#initialize" do
+
     let(:schema) do
       {
         :"$schema"    => "http://json-schema.org/draft-04/schema#",
@@ -17,6 +18,7 @@ describe JsonTestData::JsonSchema do
   describe "#generate_example" do
     describe "trivial examples" do
       context "when schema describes an object" do
+
         let(:schema) do
           JsonTestData::JsonSchema.new(
             {
@@ -37,6 +39,7 @@ describe JsonTestData::JsonSchema do
       end
 
       context "when schema describes an array" do
+
         let(:schema) do
           JsonTestData::JsonSchema.new(
             {
@@ -58,23 +61,45 @@ describe JsonTestData::JsonSchema do
     end
 
     describe "bigger examples" do
-      let(:schema) do
-        {
-          :"$schema"  => "http://json-schema.org/draft-04/schema#",
-          :type       => "object",
-          :properties => {
-            :name => {
+      context "when schema describes an object" do
+
+        let(:schema) do
+          {
+            :"$schema"  => "http://json-schema.org/draft-04/schema#",
+            :type       => "object",
+            :properties => {
+              :name => {
+                :type => "string"
+              }
+            }
+          }.to_json
+        end
+
+        let(:output) do
+          { "name" => "string" }.to_json
+        end
+
+        it "generates the right object" do
+          json_schema = JsonTestData::JsonSchema.new(schema)
+          expect(json_schema.generate_example).to eql output
+        end
+      end
+
+      context "when schema describes an array" do
+        let(:schema) do
+          {
+            :"$schema" => "http://json-schema.org/draft-04/schema#",
+            :type      => "array",
+            :items     => {
               :type => "string"
             }
-          }
-        }.to_json
-      end
+          }.to_json
+        end
 
-      let(:output) do
-        { "name" => "string" }.to_json
-      end
+        let(:output) do
+          ["string"].to_json
+        end
 
-      context "when schema describes an object" do
         it "generates the right object" do
           json_schema = JsonTestData::JsonSchema.new(schema)
           expect(json_schema.generate_example).to eql output
