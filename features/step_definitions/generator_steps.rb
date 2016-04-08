@@ -1,5 +1,5 @@
 Given(/the following JSON schema:$/) do |schema|
-  @schema = schema.to_json
+  @schema = schema
 end
 
 When(/^I run the JSON data generator$/) do

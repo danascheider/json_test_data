@@ -1,5 +1,8 @@
+require 'json'
+
 module JsonTestData
   def self.generate!(schema)
-    {}.to_json
+    schema = JSON.parse(schema)
+    schema.fetch("type") == "object" ? {}.to_json : [].to_json
   end
 end
