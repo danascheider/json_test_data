@@ -1,4 +1,3 @@
-@wip
 Feature: Handling data types
 
   The data generated needs to have the correct properties or items, including
