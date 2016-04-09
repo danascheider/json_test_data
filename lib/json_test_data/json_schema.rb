@@ -7,7 +7,7 @@ module JsonTestData
     end
 
     def generate_example
-      @schema.fetch(:type) == "object" ? generate_object(schema).to_json : generate_array(schema).to_json
+      generate(schema).to_json
     end
 
     private
