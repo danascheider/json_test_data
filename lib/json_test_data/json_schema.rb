@@ -24,15 +24,23 @@ module JsonTestData
         end
       end
 
+      def is_object?(property)
+        property.fetch(:type) == "object"
+      end
+
+      def is_array?(property)
+        property.fetch(:type) == "array"
+      end
+
       def generate_object(object)
         obj = {}
 
         object.fetch(:properties).each do |k, v|
           obj[k]  = nil unless v.has_key?(:type)
 
-          obj[k]  = if v.fetch(:type) == "object"
+          obj[k]  = if is_object?(v)
                       generate_object(v)
-                    elsif v.fetch(:type) == "array"
+                    elsif is_array?(v)
                       generate_array(v)
                     else
                       object_of_type(v.fetch(:type))
@@ -45,9 +53,9 @@ module JsonTestData
       def generate_array(object)
         return [] unless object.fetch(:items).has_key?(:type)
 
-        val = if object.fetch(:items).fetch(:type) == "object"
+        val = if is_object?(object.fetch(:items))
                 generate_object(object.fetch(:items))
-              elsif object.fetch(:items).fetch(:type) == "array"
+              elsif is_array?(object.fetch(:items))
                 generate_array(object.fetch(:items))
               else
                 object_of_type(object.fetch(:items).fetch(:type))
