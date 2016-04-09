@@ -51,14 +51,14 @@ module JsonTestData
       end
 
       def generate_array(object)
-        return [] unless object.fetch(:items).has_key?(:type)
+        return [] unless (items = object.fetch(:items)).has_key?(:type)
 
-        val = if is_object?(object.fetch(:items))
-                generate_object(object.fetch(:items))
-              elsif is_array?(object.fetch(:items))
-                generate_array(object.fetch(:items))
+        val = if is_object?(items)
+                generate_object(items)
+              elsif is_array?(items)
+                generate_array(items)
               else
-                object_of_type(object.fetch(:items).fetch(:type))
+                object_of_type(items.fetch(:type))
               end
 
         [val].compact
