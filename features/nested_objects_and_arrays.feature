@@ -1,4 +1,3 @@
-@wip
 Feature: Support nested objects and arrays
 
   Scenario: Object in an array
