@@ -1,5 +1,5 @@
-path = File.expand_path("lib/json_test_data/data_structures")
-Dir["#{path}/**/*"].each {|file| require file }
+require_relative "./data_structures/string"
+require_relative "./data_structures/number"
 
 module JsonTestData
   class JsonSchema

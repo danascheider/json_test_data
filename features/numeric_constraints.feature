@@ -37,5 +37,5 @@ Feature: Numeric constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"proportion":0.25}
+      {"proportion":-0.75}
       """
