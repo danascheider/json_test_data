@@ -74,6 +74,25 @@ describe JsonTestData::Number do
           end
         end
       end
+
+      context "minimum and multiple" do
+        let(:factor) { 2 }
+        let(:minimum) { 3 }
+        let(:object) do
+          {
+            type: "number",
+            multipleOf: factor,
+            minimum: minimum
+          }
+        end
+
+        it "returns the next lowest multiple" do
+          aggregate_failures do
+            expect(described_class.create(object)).to be_a_multiple_of(factor)
+            expect(described_class.create(object)).to be_greater_than(minimum)
+          end
+        end
+      end
     end
   end
 end

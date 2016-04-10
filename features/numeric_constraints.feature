@@ -81,3 +81,24 @@ Feature: Numeric constraints
       """json
       {"proportion":0.5}
       """
+
+  Scenario: Multiple with minimum
+    Given the following JSON schema:
+      """json
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "wheels": {
+            "type": "number",
+            "multipleOf": 4,
+            "minimum": 5
+          }
+        }
+      }
+      """
+    When I run the JSON data generator
+    Then the JSON output should be:
+      """json
+      {"wheels":8}
+      """

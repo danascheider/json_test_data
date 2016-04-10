@@ -1,9 +1,5 @@
 module JsonTestData
   module NumberHelper
-    def multiple(factor = nil)
-      factor
-    end
-
     def maximum(max = nil)
       max - 1
     end
@@ -18,6 +14,20 @@ module JsonTestData
 
     def mean(*numbers)
       numbers.inject(:+).to_f.quo(numbers.length)
+    end
+
+    def multiple(factor, min = 0)
+      return factor if factor > min
+
+      multiplier = 2
+      multiplied = factor
+
+      while multiplied <= min
+        multiplied *= multiplier
+        multiplier += 1
+      end
+
+      multiplied
     end
   end
 end

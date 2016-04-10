@@ -7,7 +7,7 @@ module JsonTestData
     class << self
       def create(schema)
         if schema.has_key?(:multipleOf)
-          multiple(schema.fetch(:multipleOf))
+          multiple(schema.fetch(:multipleOf), schema.fetch(:minimum, nil) || 0)
         elsif schema.has_key?(:maximum) && schema.has_key?(:minimum)
           between(max: schema.fetch(:maximum), min: schema.fetch(:minimum), integer: schema.fetch(:type) == "integer")
         elsif schema.has_key?(:maximum)
