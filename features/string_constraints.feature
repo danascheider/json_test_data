@@ -1,4 +1,3 @@
-@wip
 Feature: String constraints
   Scenario: Maximum length is short
     Given the following JSON schema:

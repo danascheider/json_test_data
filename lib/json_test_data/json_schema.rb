@@ -1,4 +1,5 @@
 require_relative "./data_structures/string"
+require_relative "./data_structures/number"
 
 module JsonTestData
   class JsonSchema
@@ -16,9 +17,9 @@ module JsonTestData
       def generate_data(obj)
         case obj.fetch(:type)
         when "number"
-          1
+          JsonTestData::Number.create(obj)
         when "integer"
-          1
+          JsonTestData::Number.create(obj)
         when "boolean"
           true
         when "string"
