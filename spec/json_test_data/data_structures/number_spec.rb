@@ -49,7 +49,7 @@ describe JsonTestData::Number do
         }
       end
 
-      it "returns a value less than the maximum" do
+      it "returns a value greater than the minimum" do
         expect(described_class.create(object)).to be_greater_than_or_equal_to(minimum)
       end
     end
