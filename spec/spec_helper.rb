@@ -8,6 +8,7 @@ require_relative "../lib/json_test_data"
 require_relative "../lib/json_test_data/json_schema"
 require_relative "../lib/json_test_data/data_structures/string"
 require_relative "../lib/json_test_data/data_structures/number"
+require_relative "./matchers/number_matchers"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
