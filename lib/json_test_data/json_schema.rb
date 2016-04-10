@@ -1,3 +1,5 @@
+require_relative "./data_structures/string"
+
 module JsonTestData
   class JsonSchema
     attr_accessor :schema
@@ -11,8 +13,8 @@ module JsonTestData
     end
 
     private
-      def object_of_type(type)
-        case type
+      def generate_data(obj)
+        case obj.fetch(:type)
         when "number"
           1
         when "integer"
@@ -20,7 +22,7 @@ module JsonTestData
         when "boolean"
           true
         when "string"
-          "string"
+          JsonTestData::String.create(obj)
         end
       end
 
@@ -30,7 +32,7 @@ module JsonTestData
         elsif is_array?(obj)
           generate_array(obj)
         else
-          object_of_type(obj.fetch(:type))
+          generate_data(obj)
         end
       end
 

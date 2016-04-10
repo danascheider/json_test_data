@@ -76,7 +76,7 @@ describe JsonTestData::JsonSchema do
         end
 
         let(:output) do
-          { "name" => "string" }.to_json
+          { :name => "a" }.to_json
         end
 
         it "generates the right object" do
@@ -97,7 +97,7 @@ describe JsonTestData::JsonSchema do
         end
 
         let(:output) do
-          ["string"].to_json
+          ["a"].to_json
         end
 
         it "generates the right object" do
@@ -199,7 +199,7 @@ describe JsonTestData::JsonSchema do
         end
 
         let(:output) do
-          {:users => ["string"]}.to_json
+          {:users => ["a"]}.to_json
         end
 
         it "nests the object" do
@@ -224,7 +224,7 @@ describe JsonTestData::JsonSchema do
         end
 
         let(:output) do
-          [["string"]].to_json
+          [["a"]].to_json
         end
 
         it "returns a nested array" do

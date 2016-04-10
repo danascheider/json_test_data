@@ -1,5 +1,6 @@
-Feature: Generate test data
-  Scenario: Simple object
+@wip
+Feature: String constraints
+  Scenario: Maximum length is short
     Given the following JSON schema:
       """json
       {
@@ -7,7 +8,8 @@ Feature: Generate test data
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 2
           }
         }
       }
@@ -15,22 +17,25 @@ Feature: Generate test data
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"name":"a"}
+      {"name":"aa"}
       """
 
-  Scenario: Simple array
+  Scenario: Minimum length is long
     Given the following JSON schema:
       """json
       {
         "$schema": "http://json-schema.org/draft-04/schema#",
-        "type": "array",
-        "items": {
-          "type": "string"
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 8
+          }
         }
       }
       """
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      ["a"]
+      {"name":"aaaaaaaa"}
       """
