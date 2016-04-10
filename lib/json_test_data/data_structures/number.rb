@@ -2,7 +2,7 @@ module JsonTestData
   class Number
     class << self
       def create(schema)
-        1
+        schema.fetch(:multipleOf, nil) || 1
       end
     end
   end
