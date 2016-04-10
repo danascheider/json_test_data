@@ -15,14 +15,6 @@ module JsonTestData
       adjust_for_minimum(number: num, minimum: minimum, step_size: step_size)
     end
 
-    def maximum(max = nil)
-      max - 1
-    end
-
-    def minimum(min = nil)
-      min + 1
-    end
-
     def between(min:, max:, integer: false)
       return integer ? mean(min, max).to_i : mean(min, max)
     end
