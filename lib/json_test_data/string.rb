@@ -2,7 +2,12 @@ module JsonTestData
   class String
     class << self
       def create(schema)
-        "string"
+        if schema.has_key?(:maxLength)
+          len = [schema.fetch(:maxLength), 6].min
+          "string"[0..len - 1]
+        else
+          "string"
+        end
       end
     end
   end
