@@ -19,8 +19,7 @@ module JsonTestData
     def multiple(factor, min = 0)
       return factor if factor > min
 
-      multiplier = 2
-      multiplied = factor
+      multiplier, multiplied = 2, factor
 
       while multiplied <= min
         multiplied *= multiplier
