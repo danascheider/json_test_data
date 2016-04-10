@@ -7,8 +7,8 @@ describe JsonTestData::String do
         }
       end
 
-      it "returns 'string'" do
-        expect(described_class.create(object)).to eq "string"
+      it "returns 'a'" do
+        expect(described_class.create(object)).to eq "a"
       end
     end
 
@@ -20,8 +20,8 @@ describe JsonTestData::String do
         }
       end
 
-      it "returns 'st'" do
-        expect(described_class.create(object)).to eq "st"
+      it "returns 'aa'" do
+        expect(described_class.create(object)).to eq "aa"
       end
     end
 

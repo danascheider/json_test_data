@@ -26,7 +26,7 @@ Feature: Support nested objects and arrays
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      [{"name":"string","id":1,"admin":true}]
+      [{"name":"a","id":1,"admin":true}]
       """
 
   Scenario: Array in an object
@@ -48,7 +48,7 @@ Feature: Support nested objects and arrays
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"users":["string"]}
+      {"users":["a"]}
       """
 
   Scenario: Array in an array
@@ -68,7 +68,7 @@ Feature: Support nested objects and arrays
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      [["string"]]
+      [["a"]]
       """
 
   Scenario: More complex nested object
@@ -107,5 +107,5 @@ Feature: Support nested objects and arrays
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      [{"name":"string","dossier":{"height_in_feet":1,"favorite_foods":["string"]},"admin":true}]
+      [{"name":"a","dossier":{"height_in_feet":1,"favorite_foods":["a"]},"admin":true}]
       """

@@ -17,7 +17,7 @@ Feature: String constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"name":"st"}
+      {"name":"aa"}
       """
 
   Scenario: Minimum length is long

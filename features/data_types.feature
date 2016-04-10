@@ -19,7 +19,7 @@ Feature: Handling data types
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"name":"string"}
+      {"name":"a"}
       """
 
   Scenario: Numbers
