@@ -1,4 +1,3 @@
-@wip
 Feature: Numeric constraints
   Scenario: Number must be divisible by some factor
     Given the following JSON schema:
