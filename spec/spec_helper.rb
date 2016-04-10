@@ -6,6 +6,7 @@ require "pry"
 
 require_relative "../lib/json_test_data"
 require_relative "../lib/json_test_data/json_schema"
+require_relative "../lib/json_test_data/string"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
