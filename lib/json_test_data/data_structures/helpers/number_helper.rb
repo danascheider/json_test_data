@@ -23,19 +23,6 @@ module JsonTestData
       numbers.inject(:+).to_f.quo(numbers.length)
     end
 
-    def multiple(factor, min = 0)
-      return factor if factor > min
-
-      multiplier, multiplied = 2, factor
-
-      while multiplied <= min
-        multiplied *= multiplier
-        multiplier += 1
-      end
-
-      multiplied
-    end
-
     def infinity
       Math.atanh(1)
     end
