@@ -7,9 +7,14 @@ module JsonTestData
     class << self
       def create(schema)
         factor = schema.fetch(:multipleOf, nil)
-        minimum, maximum = schema.fetch(:minimum, -infinity), schema.fetch(:maximum, infinity)
+        minimum, maximum = schema.fetch(:minimum, nil), schema.fetch(:maximum, nil)
 
-        num = factor || 1
+        num = if maximum && minimum
+                between(min: minimum, max: maximum, integer: schema.fetch(:type) == "")
+              else
+                factor || 1
+              end
+
         step_size = schema.fetch(:type) == "integer" ? 1 : 0.5
 
         num = adjust_for_maximum(number: num, maximum: maximum, step_size: factor || step_size)

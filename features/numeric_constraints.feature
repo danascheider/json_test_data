@@ -37,7 +37,7 @@ Feature: Numeric constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"proportion":-0.75}
+      {"proportion":0.0}
       """
 
   Scenario: Number has a minimum value
@@ -48,7 +48,7 @@ Feature: Numeric constraints
         "type": "object",
         "properties": {
           "quantity": {
-            "type": "number",
+            "type": "integer",
             "minimum": 2
           }
         }
