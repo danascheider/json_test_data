@@ -26,7 +26,7 @@ describe JsonTestData::Number do
       end
     end
 
-    context "multipleOf constraint" do
+    context "maximum constraint" do
       let(:maximum) { 0.5 }
       let(:object) do
         {
@@ -36,7 +36,21 @@ describe JsonTestData::Number do
       end
 
       it "returns a value less than the maximum" do
-        expect(described_class.create(object)).to be_less_than(maximum)
+        expect(described_class.create(object)).to be_less_than_or_equal_to(maximum)
+      end
+    end
+
+    context "minimum constraint" do
+      let(:minimum) { 2 }
+      let(:object) do
+        {
+          type: "number",
+          minimum: minimum
+        }
+      end
+
+      it "returns a value less than the maximum" do
+        expect(described_class.create(object)).to be_greater_than_or_equal_to(minimum)
       end
     end
   end

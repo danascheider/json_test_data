@@ -7,5 +7,9 @@ module JsonTestData
     def maximum(max = nil)
       max - 1
     end
+
+    def minimum(min = nil)
+      min + 1
+    end
   end
 end

@@ -8,8 +8,10 @@ module JsonTestData
       def create(schema)
         if schema.has_key?(:multipleOf)
           multiple(schema.fetch(:multipleOf))
-        elsif schema.fetch(:maximum, nil)
+        elsif schema.has_key?(:maximum)
           maximum(schema.fetch(:maximum))
+        elsif schema.has_key?(:minimum)
+          minimum(schema.fetch(:minimum))
         else
           1
         end
