@@ -60,3 +60,24 @@ Feature: Numeric constraints
       {"quantity":3}
       """
 
+  Scenario: Maximum and minimum
+    Given the following JSON schema:
+      """json
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "proportion": {
+            "type": "number",
+            "maximum": 1,
+            "minimum": 0,
+            "exclusiveMinimum": true
+          }
+        }
+      }
+      """
+    When I run the JSON data generator
+    Then the JSON output should be:
+      """json
+      {"proportion":0.5}
+      """
