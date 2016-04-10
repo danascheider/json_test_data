@@ -1,5 +1,20 @@
 module JsonTestData
   module NumberHelper
+    def adjust_for_maximum(number:, maximum: nil, step_size: nil)
+      return number unless (maximum && maximum < number)
+
+      num = !!step_size ? number - step_size : maximum
+      adjust_for_maximum(number: num, maximum: maximum, step_size: step_size)
+    end
+
+    def adjust_for_minimum(number:, minimum:, step_size: nil)
+      return number unless minimum && minimum > number
+
+      num = !!step_size ? number + step_size : minimum
+
+      adjust_for_minimum(number: num, minimum: minimum, step_size: step_size)
+    end
+
     def maximum(max = nil)
       max - 1
     end
@@ -27,6 +42,10 @@ module JsonTestData
       end
 
       multiplied
+    end
+
+    def infinity
+      Math.atanh(1)
     end
   end
 end
