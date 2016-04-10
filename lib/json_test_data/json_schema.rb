@@ -1,4 +1,5 @@
-require_relative "./data_structures/string"
+path = File.expand_path("lib/json_test_data/data_structures")
+Dir["#{path}/**/*"].each {|file| require file }
 
 module JsonTestData
   class JsonSchema
@@ -16,9 +17,9 @@ module JsonTestData
       def generate_data(obj)
         case obj.fetch(:type)
         when "number"
-          1
+          JsonTestData::Number.create(obj)
         when "integer"
-          1
+          JsonTestData::Number.create(obj)
         when "boolean"
           true
         when "string"
