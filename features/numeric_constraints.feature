@@ -39,3 +39,24 @@ Feature: Numeric constraints
       """json
       {"proportion":-0.75}
       """
+
+  Scenario: Number has a minimum value
+    Given the following JSON schema:
+      """json
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "type": "number",
+            "minimum": 2
+          }
+        }
+      }
+      """
+    When I run the JSON data generator
+    Then the JSON output should be:
+      """json
+      {"quantity":3}
+      """
+
