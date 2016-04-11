@@ -60,9 +60,11 @@ module JsonTestData
       def generate_array(object)
         object.fetch(:minItems, nil) || object[:minItems] = 1
 
-        return Array.new(object.fetch(:minItems)) unless object.fetch(:items, nil) && object.fetch(:items).has_key?(:type)
-
-        [generate(object.fetch(:items))].compact
+        if object.fetch(:items, nil) && object.fetch(:items).has_key?(:type)
+          Array.new(object.fetch(:minItems), generate(object.fetch(:items))).compact
+        else
+          Array.new(object.fetch(:minItems))
+        end
       end
 
       def array_has_min_items?(object)

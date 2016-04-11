@@ -16,5 +16,5 @@ Feature: Array constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      ["aaa", "aaa", "aaa", "aaa"]
+      ["aaa","aaa","aaa","aaa"]
       """
