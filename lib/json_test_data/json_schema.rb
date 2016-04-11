@@ -66,9 +66,5 @@ module JsonTestData
           Array.new(object.fetch(:minItems))
         end
       end
-
-      def array_has_min_items?(object)
-        object.has_key?(:minItems)
-      end
   end
 end
