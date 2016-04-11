@@ -15,5 +15,7 @@ To use it, first require it, then generate the test data using:
 data = JsonTestData.generate!
 ```
 
+The input that you put into it must be valid [JSON schema](http://json-schema.org). The top-level object must have a `:type` key indicating the type of object to be generated ("object", "array", "string", etc.).
+
 ## Contribute
 The JSON Test Data Generator is in its infancy and contributions are much appreciated. Please include passing tests with all pull requests, and file an issue report indicating what you'd like to work on. I'm also happy to get issue reports that do not come with pull requests, but can't guarantee I'll actually write whatever it is you want JSON Test Data to do.
