@@ -18,7 +18,6 @@ describe JsonTestData::JsonSchema do
   describe "#generate_example" do
     describe "trivial examples" do
       context "when schema describes an object" do
-
         let(:schema) do
           JsonTestData::JsonSchema.new(
             {
@@ -39,7 +38,6 @@ describe JsonTestData::JsonSchema do
       end
 
       context "when schema describes an array" do
-
         let(:schema) do
           JsonTestData::JsonSchema.new(
             {
@@ -51,10 +49,10 @@ describe JsonTestData::JsonSchema do
         end
 
         let(:output) do
-          [].to_json
+          [nil].to_json
         end
 
-        it "generates an object" do
+        it "generates an array" do
           expect(schema.generate_example).to eql output
         end
       end
@@ -209,7 +207,6 @@ describe JsonTestData::JsonSchema do
       end
 
       context "arrays in arrays" do
-
         let(:schema) do
           {
             :"$schema"  => "http://json-schema.org/draft-04/schema#",
@@ -230,6 +227,23 @@ describe JsonTestData::JsonSchema do
         it "returns a nested array" do
           json_schema = JsonTestData::JsonSchema.new(schema)
           expect(json_schema.generate_example).to eql output
+        end
+      end
+    end
+
+    describe "arrays with constraints" do
+      context "array with minimum number of items" do
+        let(:schema) do
+          {
+            :"$schema" => "http://json-schema.org/draft-04/schema#",
+            :type      => "array",
+            :minItems  => 3
+          }.to_json
+        end
+
+        it "returns an array of the correct length" do
+          json_schema = JsonTestData::JsonSchema.new(schema)
+          expect(json_schema.generate_example).to eql [nil, nil, nil].to_json
         end
       end
     end
