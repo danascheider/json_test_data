@@ -14,7 +14,7 @@ Feature: Generating empty objects
       {}
       """
 
-  Scenario: Empty array
+  Scenario: Array with null
     Given the following JSON schema:
       """json
       {
@@ -26,5 +26,5 @@ Feature: Generating empty objects
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      []
+      [null]
       """

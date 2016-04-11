@@ -49,7 +49,7 @@ describe JsonTestData::JsonSchema do
         end
 
         let(:output) do
-          [].to_json
+          [nil].to_json
         end
 
         it "generates an array" do

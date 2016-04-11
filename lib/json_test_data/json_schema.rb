@@ -38,11 +38,11 @@ module JsonTestData
       end
 
       def is_object?(property)
-        property.fetch(:type) == "object"
+        property.fetch(:type, nil) == "object"
       end
 
       def is_array?(property)
-        property.fetch(:type) == "array"
+        property.fetch(:type, nil) == "array"
       end
 
       def generate_object(object)
@@ -57,13 +57,10 @@ module JsonTestData
         obj
       end
 
-      def array_with_min_items(obj)
-        min = obj.fetch(:minItems, nil) || 0
-        Array.new(min)
-      end
-
       def generate_array(object)
-        return array_with_min_items(object) unless object.fetch(:items, nil) && object.fetch(:items).has_key?(:type)
+        object.fetch(:minItems, nil) || object[:minItems] = 1
+
+        return Array.new(object.fetch(:minItems)) unless object.fetch(:items, nil) && object.fetch(:items).has_key?(:type)
 
         [generate(object.fetch(:items))].compact
       end
