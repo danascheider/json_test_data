@@ -1,4 +1,3 @@
-@wip
 Feature: Array constraints
   Scenario: Minimum number of items
     Given the following JSON schema:
