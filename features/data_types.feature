@@ -17,10 +17,7 @@ Feature: Handling data types
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"name":"a"}
-      """
+    Then the "name" property of the JSON output should be a String
 
   Scenario: Numbers
     Given the following JSON schema:
