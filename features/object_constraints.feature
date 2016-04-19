@@ -1,36 +1,28 @@
-Feature: Generate test data
-  Scenario: Simple object
+Feature: Object constraints
+  Scenario: Object has no specified properties
+    Given the following JSON schema:
+      """json
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object"
+      }
+      """
+    When I run the JSON data generator
+    Then the JSON output should be:
+      """json
+      {}
+      """
+
+  Scenario: Minimum number of properties
     Given the following JSON schema:
       """json
       {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
+        "minProperties": 3,
         "properties": {
-          "id": {
-            "type": "number"
-          }
         }
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"id":1}
-      """
-
-  Scenario: Simple array
-    Given the following JSON schema:
-      """json
-      {
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "type": "array",
-        "items": {
-          "type": "number"
-        }
-      }
-      """
-    When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      [1]
-      """
+    Then JSON output should have 3 properties

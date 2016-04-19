@@ -2,15 +2,17 @@
 require_relative "./version"
 
 Gem::Specification.new do |s|
-  s.name        = "json_test_data"
-  s.version     = JsonTestData::VERSION
-  s.authors     = ["Dana Scheider"]
-  s.description = "Generate test data from JSON schema"
-  s.summary     = "rambo-#{s.version}"
-  s.email       = 'dana.scheider@gmail.com'
-  s.license     = 'MIT'
-  s.platform    = Gem::Platform::RUBY
+  s.name                  = "json_test_data"
+  s.version               = JsonTestData::VERSION
+  s.authors               = ["Dana Scheider"]
+  s.description           = "Generate test data from JSON schema"
+  s.summary               = "rambo-#{s.version}"
+  s.email                 = 'dana.scheider@gmail.com'
+  s.license               = 'MIT'
+  s.platform              = Gem::Platform::RUBY
   s.required_ruby_version = ">= 2.1.0"
+
+  s.add_dependency 'regxing', '~> 0.1.0.beta'
 
   s.add_development_dependency 'cucumber', '~> 2.1'
   s.add_development_dependency 'rspec', '~> 3.4'

@@ -7,7 +7,7 @@ Feature: Array constraints
         "type": "array",
         "minItems": 4,
         "items": {
-          "type": "string",
+          "type": "number",
           "minLength": 3
         }
       }
@@ -15,5 +15,5 @@ Feature: Array constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      ["aaa","aaa","aaa","aaa"]
+      [1,1,1,1]
       """
