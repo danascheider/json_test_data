@@ -56,6 +56,14 @@ module JsonTestData
           end
         end
 
+        if object.has_key?(:minProperties) && obj.length < object.fetch(:minProperties, 0)
+          (object.fetch(:minProperties) - obj.length).times do
+            key = JsonTestData::String.create({type: "string"})
+            puts "KEY: #{key}"
+            obj[key] = nil
+          end
+        end
+
         obj.size == 0 ? {} : obj
       end
 

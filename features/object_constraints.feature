@@ -1,4 +1,3 @@
-@wip
 Feature: Object constraints
   Scenario: Object has no specified properties
     Given the following JSON schema:
