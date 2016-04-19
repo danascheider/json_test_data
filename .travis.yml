@@ -4,8 +4,6 @@ rvm:
   - 2.2.2
   - 2.3.0
 sudo: false
-before_install:
-  - gem install regxing --version "0.1.0.beta"
 branches:
   only:
     - master
