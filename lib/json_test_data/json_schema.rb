@@ -48,10 +48,12 @@ module JsonTestData
       def generate_object(object)
         obj = {}
 
-        object.fetch(:properties).each do |k, v|
-          obj[k]  = nil unless v.has_key?(:type)
+        if object.has_key?(:properties)
+          object.fetch(:properties).each do |k, v|
+            obj[k]  = nil unless v.has_key?(:type)
 
-          obj[k]  = generate(v)
+            obj[k]  = generate(v)
+          end
         end
 
         obj.size == 0 ? {} : obj
