@@ -7,8 +7,12 @@ describe JsonTestData::String do
         }
       end
 
-      it "returns 'a'" do
-        expect(described_class.create(object)).to eq "a"
+      it "returns a string" do
+        expect(described_class.create(object)).to be_a String
+      end
+
+      it "returns a single character" do
+        expect(described_class.create(object).length).to eq 1
       end
     end
 
@@ -20,8 +24,8 @@ describe JsonTestData::String do
         }
       end
 
-      it "returns 'aa'" do
-        expect(described_class.create(object)).to eq "aa"
+      it "returns a string 2 characters long" do
+        expect(described_class.create(object).length).to eq 2
       end
     end
 
@@ -33,8 +37,8 @@ describe JsonTestData::String do
         }
       end
 
-      it "returns 'aaaaaaaa'" do
-        expect(described_class.create(object)).to eq "aaaaaaaa"
+      it "returns an 8-character string" do
+        expect(described_class.create(object).length).to eq 8
       end
     end
   end

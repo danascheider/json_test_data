@@ -67,14 +67,14 @@ describe JsonTestData::JsonSchema do
             :type       => "object",
             :properties => {
               :name => {
-                :type => "string"
+                :type => "number"
               }
             }
           }.to_json
         end
 
         let(:output) do
-          { :name => "a" }.to_json
+          { :name => 1 }.to_json
         end
 
         it "generates the right object" do
@@ -89,13 +89,13 @@ describe JsonTestData::JsonSchema do
             :"$schema" => "http://json-schema.org/draft-04/schema#",
             :type      => "array",
             :items     => {
-              :type => "string"
+              :type => "number"
             }
           }.to_json
         end
 
         let(:output) do
-          ["a"].to_json
+          [1].to_json
         end
 
         it "generates the right object" do
@@ -189,7 +189,7 @@ describe JsonTestData::JsonSchema do
               :users => {
                 :type  => "array",
                 :items => {
-                  :type => "string"
+                  :type => "number"
                 }
               }
             }
@@ -197,7 +197,7 @@ describe JsonTestData::JsonSchema do
         end
 
         let(:output) do
-          {:users => ["a"]}.to_json
+          {:users => [1]}.to_json
         end
 
         it "nests the object" do
@@ -214,14 +214,14 @@ describe JsonTestData::JsonSchema do
             :items => {
               :type => "array",
               :items => {
-                :type => "string"
+                :type => "number"
               }
             }
           }.to_json
         end
 
         let(:output) do
-          [["a"]].to_json
+          [[1]].to_json
         end
 
         it "returns a nested array" do

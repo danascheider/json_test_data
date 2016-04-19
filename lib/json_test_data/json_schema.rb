@@ -54,7 +54,7 @@ module JsonTestData
           obj[k]  = generate(v)
         end
 
-        obj
+        obj.size == 0 ? {} : obj
       end
 
       def generate_array(object)

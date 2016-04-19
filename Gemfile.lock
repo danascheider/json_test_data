@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     json_test_data (0.0.1)
+      regxing (~> 0.1.0.beta)
 
 GEM
   remote: https://rubygems.org/
@@ -37,6 +38,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rake (10.5.0)
+    regxing (0.1.0.beta)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
