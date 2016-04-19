@@ -6,8 +6,8 @@ Feature: Generate test data
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string"
+          "id": {
+            "type": "number"
           }
         }
       }
@@ -15,7 +15,7 @@ Feature: Generate test data
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"name":"a"}
+      {"id":1}
       """
 
   Scenario: Simple array
@@ -25,12 +25,12 @@ Feature: Generate test data
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "array",
         "items": {
-          "type": "string"
+          "type": "number"
         }
       }
       """
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      ["a"]
+      [1]
       """

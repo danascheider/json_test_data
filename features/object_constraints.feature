@@ -11,7 +11,7 @@ Feature: Object constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"aaa": null}
+      {}
       """
 
   Scenario: Minimum number of properties
@@ -26,6 +26,4 @@ Feature: Object constraints
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      """
+    Then JSON output should have 3 properties
