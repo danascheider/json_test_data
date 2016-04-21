@@ -21,9 +21,5 @@ module JsonTestData
     def mean(*numbers)
       numbers.inject(:+).to_f.quo(numbers.length)
     end
-
-    def infinity
-      Math.atanh(1)
-    end
   end
 end
