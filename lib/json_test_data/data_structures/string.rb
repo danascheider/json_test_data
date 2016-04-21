@@ -1,5 +1,3 @@
-require "regxing"
-
 module JsonTestData
   class String
     extend RegXing

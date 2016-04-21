@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    json_test_data (0.2.0.beta)
+    json_test_data (0.3.0.beta)
       regxing (~> 0.1.0.beta)
 
 GEM
