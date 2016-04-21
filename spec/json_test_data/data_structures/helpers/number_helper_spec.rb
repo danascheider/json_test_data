@@ -61,5 +61,14 @@ describe JsonTestData::NumberHelper do
         expect(adjust_for_minimum(number: number)).to eql number
       end
     end
+
+    context "number is greater than minimum" do
+      let(:number) { 1 }
+      let(:minimum) { 0 }
+
+      it "returns the number" do
+        expect(adjust_for_minimum(number: number, minimum: minimum)).to eql number
+      end
+    end
   end
 end
