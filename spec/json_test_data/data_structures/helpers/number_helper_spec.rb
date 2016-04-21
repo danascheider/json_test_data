@@ -104,4 +104,24 @@ describe JsonTestData::NumberHelper do
       end
     end
   end
+
+  describe "#between" do
+    context "when it doesn't have to be an integer" do
+      let(:min) { 1 }
+      let(:max) { 2 }
+      let(:result) { 1.5 }
+
+      it "returns the mean" do
+        expect(between(min: min, max: max)).to be_within(0.0002).of(result)
+      end
+
+      it "is less than the max" do
+        expect(between(min: min, max: max)).to be_less_than(max)
+      end
+
+      it "is greater than the min" do
+        expect(between(min: min, max: max)).to be_greater_than(min)
+      end
+    end
+  end
 end
