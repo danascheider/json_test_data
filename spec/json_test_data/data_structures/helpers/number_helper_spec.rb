@@ -134,4 +134,13 @@ describe JsonTestData::NumberHelper do
       end
     end
   end
+
+  describe "#mean" do
+    let(:numbers) { [ 3, 4, 5, 6 ] }
+    let(:avg) { 4.5 }
+
+    it "returns the mean" do
+      expect(mean(*numbers)).to be_within(0.0002).of(avg)
+    end
+  end
 end
