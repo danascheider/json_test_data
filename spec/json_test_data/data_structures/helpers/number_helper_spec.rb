@@ -123,5 +123,15 @@ describe JsonTestData::NumberHelper do
         expect(between(min: min, max: max)).to be_greater_than(min)
       end
     end
+
+    context "when it has to be an integer" do
+      let(:min) { 2 }
+      let(:max) { 5 }
+      let(:result) { 3 }
+
+      it "returns the nearest integer" do
+        expect(between(min: min, max: max, integer: true)).to eql result
+      end
+    end
   end
 end

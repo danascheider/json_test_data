@@ -15,7 +15,7 @@ module JsonTestData
     end
 
     def between(min:, max:, integer: false)
-      return integer ? mean(min, max).to_i : mean(min, max)
+      return integer ? mean(min, max).round(0) : mean(min, max)
     end
 
     def mean(*numbers)
