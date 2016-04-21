@@ -12,7 +12,7 @@ gem "json_test_data", "~> 0.0.1"
 ```
 To use it, first require it, then generate the test data using:
 ```ruby
-data = JsonTestData.generate!
+data = JsonTestData.generate!(schema)
 ```
 
 The input that you put into it must be valid [JSON schema](http://json-schema.org). The top-level object must have a `:type` key indicating the type of object to be generated ("object", "array", "string", etc.).
