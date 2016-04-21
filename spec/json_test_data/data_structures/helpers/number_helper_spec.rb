@@ -27,5 +27,17 @@ describe JsonTestData::NumberHelper do
         expect(adjust_for_maximum(number: number, maximum: maximum)).to eql maximum - 1
       end
     end
+
+    context "step size greater than 1" do
+      let(:number) { 3 }
+      let(:maximum) { 3 }
+      let(:step_size) { 2 }
+
+      it "returns the number reduced by step size" do
+        expect(
+          adjust_for_maximum(number: number, maximum: maximum, step_size: step_size)
+        ).to eql number - step_size
+      end
+    end
   end
 end
