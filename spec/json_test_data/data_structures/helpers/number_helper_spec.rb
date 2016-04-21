@@ -36,7 +36,7 @@ describe JsonTestData::NumberHelper do
       it "returns the number reduced by step size" do
         expect(
           adjust_for_maximum(number: number, maximum: maximum, step_size: step_size)
-        ).to eql number - step_size
+        ).to eql maximum - step_size
       end
     end
 
@@ -48,7 +48,7 @@ describe JsonTestData::NumberHelper do
       it "returns the number reduced by step size" do
         expect(
           adjust_for_maximum(number: number, maximum: maximum, step_size: step_size)
-        ).to eql number - step_size
+        ).to eql maximum - step_size
       end
     end
   end
@@ -68,6 +68,39 @@ describe JsonTestData::NumberHelper do
 
       it "returns the number" do
         expect(adjust_for_minimum(number: number, minimum: minimum)).to eql number
+      end
+    end
+
+    context "number is less than or equal to minimum" do
+      let(:number) { 2 }
+      let(:minimum) { 2 }
+
+      it "returns one more than the minimum" do
+        expect(adjust_for_minimum(number: number, minimum: minimum)).to eql minimum + 1
+      end
+    end
+
+    context "step size greater than 1" do
+      let(:number) { 2 }
+      let(:minimum) { 2 }
+      let(:step_size) { 2 }
+
+      it "returns the number increased by step size" do
+        expect(
+          adjust_for_minimum(number: number, minimum: minimum, step_size: step_size)
+        ).to eql minimum + step_size
+      end
+    end
+
+    context "step size less than 1" do
+      let(:number) { 2 }
+      let(:minimum) { 2 }
+      let(:step_size) { 0.5 }
+
+      it "returns the number reduced by step size" do
+        expect(
+          adjust_for_minimum(number: number, minimum: minimum, step_size: step_size)
+        ).to eql minimum + step_size
       end
     end
   end
