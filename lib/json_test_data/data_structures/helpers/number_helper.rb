@@ -7,7 +7,7 @@ module JsonTestData
       adjust_for_maximum(number: num, maximum: maximum, step_size: step_size)
     end
 
-    def adjust_for_minimum(number:, minimum:, step_size: nil)
+    def adjust_for_minimum(number:, minimum: nil, step_size: nil)
       return number unless minimum && minimum >= number
 
       num = !!step_size ? number + step_size : minimum + 1
