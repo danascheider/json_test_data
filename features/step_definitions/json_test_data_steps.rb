@@ -6,8 +6,20 @@ When(/^I run the JSON data generator$/) do
   @output = JsonTestData.generate!(@schema)
 end
 
+When(/^I run the JSON data generator with the "ruby" option$/) do
+  @output = JsonTestData.generate!(@schema, ruby: true)
+end
+
 Then(/^the JSON output should be:$/) do |json|
   expect(@output).to eq json
+end
+
+Then(/^the output should be a Ruby hash$/) do
+  expect(@output).to be_a(Hash)
+end
+
+Then(/^the output should be a Ruby array$/) do
+  expect(@output).to be_a(Array)
 end
 
 Then(/^the "([^" ]*)" property of the JSON output should be a ([^ ]*)$/) do |prop, type|
