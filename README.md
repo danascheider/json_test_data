@@ -14,6 +14,10 @@ To use it, first require it, then generate the test data using:
 ```ruby
 data = JsonTestData.generate!(schema)
 ```
+If you would prefer to return a Ruby object instead of a JSON object, simply include the `:ruby` option:
+```ruby
+data = JsonTestData.generate!(schema, ruby: true)
+```
 
 The input that you put into it must be valid [JSON schema](http://json-schema.org). The top-level object must have a `:type` key indicating the type of object to be generated ("object", "array", "string", etc.).
 

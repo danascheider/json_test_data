@@ -1,3 +1,3 @@
 module JsonTestData
-  VERSION = '0.3.0.beta'
+  VERSION = '0.4.0.beta'
 end
