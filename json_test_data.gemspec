@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version               = JsonTestData::VERSION
   s.authors               = ["Dana Scheider"]
   s.description           = "Generate test data from JSON schema"
-  s.summary               = "rambo-#{s.version}"
+  s.summary               = "json_test_data-#{s.version}"
   s.email                 = 'dana.scheider@gmail.com'
   s.license               = 'MIT'
   s.platform              = Gem::Platform::RUBY
