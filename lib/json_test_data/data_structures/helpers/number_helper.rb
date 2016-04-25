@@ -25,7 +25,7 @@ module JsonTestData
     end
 
     def adjust(number:, cutoff:, step_size: 1)
-      cutoff + step_size
+      cutoff + (step_size || 1)
     end
   end
 end

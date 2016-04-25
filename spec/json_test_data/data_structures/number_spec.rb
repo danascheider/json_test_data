@@ -93,6 +93,26 @@ describe JsonTestData::Number do
           end
         end
       end
+
+      context "minimum not a multiple of multiple" do
+        let(:minimum) { 3 }
+        let(:factor) { 5 }
+        let(:object) do
+          {
+            type: "number",
+            minimum: minimum,
+            multipleOf: factor
+          }
+        end
+
+        it "returns a multiple of the given factor" do
+          expect(described_class.create(object)).to be_a_multiple_of(factor)
+        end
+
+        it "returns a number higher than the minimum" do
+          expect(described_class.create(object)).to be_greater_than_or_equal_to(minimum)
+        end
+      end
     end
   end
 end
