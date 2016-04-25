@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    json_test_data (0.6.0)
+    json_test_data (0.7.0)
       regxing (~> 0.1.0.beta)
 
 GEM
@@ -35,7 +35,7 @@ GEM
     multi_json (1.11.3)
     multi_test (0.1.2)
     rake (11.1.2)
-    regxing (0.1.0.beta)
+    regxing (0.1.0)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
