@@ -123,13 +123,9 @@ describe JsonTestData::JsonSchema do
           }.to_json
         end
 
-        let(:output) do
-          {:id => 1}.to_json
-        end
-
         it "uses the correct data type" do
-          json_schema = JsonTestData::JsonSchema.new(schema)
-          expect(json_schema.generate_example).to eql output
+          example = JsonTestData::JsonSchema.new(schema).generate_example
+          expect(JSON.parse(example).fetch("id")).to be_a Numeric
         end
       end
 
@@ -178,8 +174,12 @@ describe JsonTestData::JsonSchema do
         end
 
         it "nests the object" do
-          json_schema = JsonTestData::JsonSchema.new(schema)
-          expect(json_schema.generate_example).to eql output
+          example = JSON.parse(JsonTestData::JsonSchema.new(schema).generate_example)
+          aggregate_failures do
+            expect(example).to be_a Array
+            expect(example.first).to be_a Hash
+            expect(example.first.fetch("id")).to be_a Numeric
+          end
         end
       end
 
@@ -204,8 +204,12 @@ describe JsonTestData::JsonSchema do
         end
 
         it "nests the object" do
-          json_schema = JsonTestData::JsonSchema.new(schema)
-          expect(json_schema.generate_example).to eql output
+          example = JSON.parse(JsonTestData::JsonSchema.new(schema).generate_example)
+          aggregate_failures do
+            expect(example).to be_a Hash
+            expect(example.fetch("users")).to be_a Array
+            expect(example.fetch("users").first).to be_a Numeric
+          end
         end
       end
 
@@ -223,13 +227,13 @@ describe JsonTestData::JsonSchema do
           }.to_json
         end
 
-        let(:output) do
-          [[1]].to_json
-        end
-
         it "returns a nested array" do
-          json_schema = JsonTestData::JsonSchema.new(schema)
-          expect(json_schema.generate_example).to eql output
+          example = JSON.parse(JsonTestData::JsonSchema.new(schema).generate_example)
+          aggregate_failures do
+            expect(example).to be_a Array
+            expect(example.first).to be_a Array
+            expect(example.first.first).to be_a Numeric
+          end
         end
       end
     end
