@@ -25,8 +25,7 @@ Feature: Array constraints
         "type": "array",
         "minItems": 4,
         "items": {
-          "type": "string",
-          "minLength": 3
+          "type": "number"
         }
       }
       """
