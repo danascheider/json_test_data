@@ -62,15 +62,15 @@ module JsonTestData
         adjust_for_divisibility!
 
         if too_high?
-          value -= step_size
+          @value -= step_size
         end
 
         if too_low?
-          value += step_size
+          @value += step_size
         end
       end
 
-      value ||= 1
+      @value ||= 1
     end
   end
 end
