@@ -8,7 +8,7 @@ gem install json_test_data
 ```
 Alternatively, it can be included in your Gemfile:
 ```ruby
-gem "json_test_data", "~> 0.5.1"
+gem "json_test_data", "~> 0.6.0"
 ```
 To use it, first require it, then generate the test data using:
 ```ruby
