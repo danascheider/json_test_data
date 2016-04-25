@@ -27,4 +27,4 @@ Feature: Array constraints
       }
       """
     When I run the JSON data generator
-    Then the output array should have no duplicate items
+    Then the output should match the schema
