@@ -80,7 +80,7 @@ describe JsonTestData::JsonSchema do
 
         it "contains the right type of objects" do
           output = JsonTestData::JsonSchema.new(schema).generate_example
-          expect(JSON.parse(output).fetch(:name)).to be_a(Numeric)
+          expect(JSON.parse(output).fetch("name")).to be_a(Numeric)
         end
       end
 
