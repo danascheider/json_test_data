@@ -12,7 +12,7 @@ Feature: Array constraints
       }
       """
     When I run the JSON data generator
-    Then the output array should have 4 items
+    Then the output should match the schema
 
   Scenario: Unique items
     Given the following JSON schema:

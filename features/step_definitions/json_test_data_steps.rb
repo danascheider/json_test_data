@@ -10,6 +10,10 @@ When(/^I run the JSON data generator with the "ruby" option$/) do
   @output = JsonTestData.generate!(@schema, ruby: true)
 end
 
+Then(/^the output should match the schema$/) do
+  expect(@output).to match_schema(@schema)
+end
+
 Then(/^the JSON output should be:$/) do |json|
   expect(@output).to eq json
 end
