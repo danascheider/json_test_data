@@ -103,7 +103,7 @@ describe JsonTestData::JsonSchema do
         it "contains the right kind of objects" do
           array = JSON.parse(JsonTestData::JsonSchema.new(schema).generate_example)
           all_numbers = array.all? {|item| item.is_a?(Numeric) }
-          expect(all_numbers).to be_true
+          expect(all_numbers).to be true
         end
       end
     end
