@@ -17,7 +17,7 @@ Feature: Handling data types
       }
       """
     When I run the JSON data generator
-    Then the "name" property of the JSON output should be a String
+    Then the output should match the schema
 
   Scenario: Numbers
     Given the following JSON schema:
@@ -33,10 +33,7 @@ Feature: Handling data types
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"id":1}
-      """
+    Then the output should match the schema
 
   Scenario: Booleans
     Given the following JSON schema:
@@ -52,7 +49,4 @@ Feature: Handling data types
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"admin":true}
-      """
+    Then the output should match the schema

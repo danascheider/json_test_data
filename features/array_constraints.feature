@@ -7,13 +7,24 @@ Feature: Array constraints
         "type": "array",
         "minItems": 4,
         "items": {
-          "type": "number",
-          "minLength": 3
+          "type": "number"
         }
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
+    Then the output should match the schema
+
+  Scenario: Unique items
+    Given the following JSON schema:
       """json
-      [1,1,1,1]
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "array",
+        "minItems": 4,
+        "items": {
+          "type": "number"
+        }
+      }
       """
+    When I run the JSON data generator
+    Then the output should match the schema

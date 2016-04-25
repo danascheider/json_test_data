@@ -20,10 +20,7 @@ Feature: Support nested objects and arrays
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      [{"id":1,"admin":true}]
-      """
+    Then the output should match the schema
 
   Scenario: Array in an object
     Given the following JSON schema:
@@ -42,10 +39,7 @@ Feature: Support nested objects and arrays
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"users":[1]}
-      """
+    Then the output should match the schema
 
   Scenario: Array in an array
     Given the following JSON schema:
@@ -62,10 +56,7 @@ Feature: Support nested objects and arrays
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      [[1]]
-      """
+    Then the output should match the schema
 
   Scenario: More complex nested object
     Given the following JSON schema:
@@ -101,7 +92,4 @@ Feature: Support nested objects and arrays
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      [{"id":1,"dossier":{"height_in_feet":1,"favorite_foods":[1]},"admin":true}]
-      """
+    Then the output should match the schema

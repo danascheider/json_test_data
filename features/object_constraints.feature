@@ -8,10 +8,7 @@ Feature: Object constraints
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {}
-      """
+    Then the output should match the schema
 
   Scenario: Minimum number of properties
     Given the following JSON schema:
@@ -25,4 +22,4 @@ Feature: Object constraints
       }
       """
     When I run the JSON data generator
-    Then JSON output should have 3 properties
+    Then the output should match the schema

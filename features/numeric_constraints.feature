@@ -14,10 +14,7 @@ Feature: Numeric constraints
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"widgets":2}
-      """
+    Then the output should match the schema
 
   Scenario: Number has a maximum value
     Given the following JSON schema:
@@ -34,10 +31,7 @@ Feature: Numeric constraints
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"proportion":0.0}
-      """
+    Then the output should match the schema
 
   Scenario: Number has a minimum value
     Given the following JSON schema:
@@ -54,10 +48,7 @@ Feature: Numeric constraints
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"quantity":3}
-      """
+    Then the output should match the schema
 
   Scenario: Maximum and minimum
     Given the following JSON schema:
@@ -76,10 +67,7 @@ Feature: Numeric constraints
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"proportion":0.83}
-      """
+    Then the output should match the schema
 
   Scenario: Multiple with minimum
     Given the following JSON schema:
@@ -97,7 +85,4 @@ Feature: Numeric constraints
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"wheels":20}
-      """
+    Then the output should match the schema

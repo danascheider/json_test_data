@@ -13,10 +13,7 @@ Feature: Generate test data
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {"id":1}
-      """
+    Then the output should match the schema
 
   Scenario: Simple array
     Given the following JSON schema:
@@ -30,7 +27,4 @@ Feature: Generate test data
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      [1]
-      """
+    Then the output should match the schema

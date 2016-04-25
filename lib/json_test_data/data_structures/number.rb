@@ -12,19 +12,13 @@ module JsonTestData
         num = new(min: minimum, max: maximum, factor: factor, type: schema.fetch(:type, "number").to_sym)
         num.adjust!
       end
-
-      private
-
-      def ensure_multiple_of(number, factor=1)
-        number % factor == 0 ? number : number * factor
-      end
     end
 
     attr_accessor :value, :maximum, :minimum, :type, :factor
 
     def initialize(min: nil, max: nil, factor: nil, value: nil, type: nil)
       @factor, @minimum, @maximum = factor, min, max
-      @value = value || @factor || 1
+      @value = value || @factor || rand(1000)
       @type  = type || :number
     end
 
@@ -33,10 +27,6 @@ module JsonTestData
 
       @step_size ||= Number.between(min: minimum, max: maximum, integer: type == :integer) / 3
       is_int? ? @step_size.to_i : @step_size.round(2)
-    end
-
-    def ensure_multiple_of!
-      @value *= factor unless value % factor == 0
     end
 
     def adjust_for_divisibility!
@@ -76,7 +66,6 @@ module JsonTestData
       end
 
       @value ||= 1
-      puts "TYPE: #{type}"
       @type == :number ? @value : @value.to_i
     end
   end

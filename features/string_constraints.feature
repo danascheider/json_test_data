@@ -14,7 +14,7 @@ Feature: String constraints
       }
       """
     When I run the JSON data generator
-    Then the "name" property of the JSON output should be a string of length 2
+    Then the output should match the schema
 
   Scenario: Minimum length is long
     Given the following JSON schema:
@@ -31,4 +31,4 @@ Feature: String constraints
       }
       """
     When I run the JSON data generator
-    Then the "name" property of the JSON output should be a string of length 8
+    Then the output should match the schema
