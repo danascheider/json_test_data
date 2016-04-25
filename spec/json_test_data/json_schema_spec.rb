@@ -73,13 +73,14 @@ describe JsonTestData::JsonSchema do
           }.to_json
         end
 
-        let(:output) do
-          { :name => 1 }.to_json
+        it "generates an object" do
+          output = JsonTestData::JsonSchema.new(schema).generate_example
+          expect(JSON.parse(output)).to be_a Hash
         end
 
-        it "generates the right object" do
-          json_schema = JsonTestData::JsonSchema.new(schema)
-          expect(json_schema.generate_example).to eql output
+        it "contains the right type of objects" do
+          output = JsonTestData::JsonSchema.new(schema).generate_example
+          expect(JSON.parse(output).fetch(:name)).to be_a(Numeric)
         end
       end
 
@@ -94,13 +95,15 @@ describe JsonTestData::JsonSchema do
           }.to_json
         end
 
-        let(:output) do
-          [1].to_json
+        it "generates an array" do
+          json_schema = JsonTestData::JsonSchema.new(schema)
+          expect(JSON.parse(json_schema.generate_example)).to be_a Array
         end
 
-        it "generates the right object" do
-          json_schema = JsonTestData::JsonSchema.new(schema)
-          expect(json_schema.generate_example).to eql output
+        it "contains the right kind of objects" do
+          array = JSON.parse(JsonTestData::JsonSchema.new(schema).generate_example)
+          all_numbers = array.all? {|item| item.is_a?(Numeric) }
+          expect(all_numbers).to be_true
         end
       end
     end
