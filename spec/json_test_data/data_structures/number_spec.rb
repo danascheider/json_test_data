@@ -7,8 +7,8 @@ describe JsonTestData::Number do
         }
       end
 
-      it "returns 1" do
-        expect(described_class.create(object)).to eql 1
+      it "returns a number" do
+        expect(described_class.create(object)).to be_a Numeric
       end
     end
 
