@@ -78,7 +78,7 @@ Feature: Numeric constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"proportion":0.5}
+      {"proportion":0.83}
       """
 
   Scenario: Multiple with minimum
@@ -89,7 +89,7 @@ Feature: Numeric constraints
         "type": "object",
         "properties": {
           "wheels": {
-            "type": "number",
+            "type": "integer",
             "multipleOf": 4,
             "minimum": 5
           }
@@ -99,5 +99,5 @@ Feature: Numeric constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"wheels":8}
+      {"wheels":20}
       """
