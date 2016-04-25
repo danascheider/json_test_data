@@ -56,7 +56,7 @@ Feature: Numeric constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"quantity":2.5}
+      {"quantity":3}
       """
 
   Scenario: Maximum and minimum
@@ -89,7 +89,7 @@ Feature: Numeric constraints
         "type": "object",
         "properties": {
           "wheels": {
-            "type": "number",
+            "type": "integer",
             "multipleOf": 4,
             "minimum": 5
           }
@@ -99,5 +99,5 @@ Feature: Numeric constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"wheels":72}
+      {"wheels":20}
       """
