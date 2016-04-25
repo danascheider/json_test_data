@@ -56,7 +56,7 @@ Feature: Numeric constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"quantity":3}
+      {"quantity":2.5}
       """
 
   Scenario: Maximum and minimum
