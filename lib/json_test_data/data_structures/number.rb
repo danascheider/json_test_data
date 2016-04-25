@@ -29,10 +29,6 @@ module JsonTestData
       is_int? ? @step_size.to_i : @step_size.round(2)
     end
 
-    def ensure_multiple_of!
-      @value *= factor unless value % factor == 0
-    end
-
     def adjust_for_divisibility!
       return if value_divisible_by_factor?
       @value *= factor
