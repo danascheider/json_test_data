@@ -17,12 +17,12 @@ describe JsonTestData::Number do
       let(:object) do
         {
           type: "number",
-          multipleOf: factor
+          multipleOf: 2
         }
       end
 
       it "returns a multiple of the given number" do
-        expect(described_class.create(object)).to be_a_multiple_of(factor)
+        expect(described_class.create(object)).to be_a_multiple_of(2)
       end
     end
 
