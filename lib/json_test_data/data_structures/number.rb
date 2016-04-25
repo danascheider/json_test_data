@@ -24,7 +24,7 @@ module JsonTestData
 
     def initialize(min: nil, max: nil, factor: nil, value: nil, type: nil)
       @factor, @minimum, @maximum = factor, min, max
-      @value = value || @factor || 1
+      @value = value || @factor || rand(1000)
       @type  = type || :number
     end
 
@@ -76,7 +76,6 @@ module JsonTestData
       end
 
       @value ||= 1
-      puts "TYPE: #{type}"
       @type == :number ? @value : @value.to_i
     end
   end
