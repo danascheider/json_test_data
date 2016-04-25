@@ -13,7 +13,7 @@ Feature: Generate test data
       }
       """
     When I run the JSON data generator
-    Then the "id" key in the output hash should have a numeric value
+    Then the output should match the schema
 
   Scenario: Simple array
     Given the following JSON schema:
@@ -27,4 +27,4 @@ Feature: Generate test data
       }
       """
     When I run the JSON data generator
-    Then the output should be an array of numbers
+    Then the output should match the schema

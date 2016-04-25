@@ -9,10 +9,7 @@ Feature: Generating empty objects
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      {}
-      """
+    Then the output should match the schema
 
   Scenario: Array with null
     Given the following JSON schema:
@@ -24,10 +21,7 @@ Feature: Generating empty objects
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      [null]
-      """
+    Then the output should match the schema
 
   Scenario: Ruby hash
     Given the following JSON schema:
