@@ -7,8 +7,7 @@ Feature: Array constraints
         "type": "array",
         "minItems": 4,
         "items": {
-          "type": "number",
-          "minLength": 3
+          "type": "number"
         }
       }
       """
@@ -17,3 +16,19 @@ Feature: Array constraints
       """json
       [1,1,1,1]
       """
+
+  Scenario: Unique items
+    Given the following JSON schema:
+      """json
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "array",
+        "minItems": 4,
+        "items": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+      """
+    When I run the JSON data generator
+    Then the output array should have no duplicate items

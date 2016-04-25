@@ -32,6 +32,11 @@ Then(/^the "([^"]*)" property of the JSON output should be a string of length (\
   expect(JSON.parse(@output).fetch(prop).length).to eql length.to_i
 end
 
+Then(/^the output array should have no duplicate items$/) do
+  output = JSON.parse(@output)
+  expect(output.uniq).to eq output
+end
+
 Then(/^JSON output should have (\d+) properties$/) do |number|
   expect(JSON.parse(@output).length).to eql number.to_i
 end
