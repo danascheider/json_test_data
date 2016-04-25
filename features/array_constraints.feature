@@ -12,10 +12,7 @@ Feature: Array constraints
       }
       """
     When I run the JSON data generator
-    Then the JSON output should be:
-      """json
-      [1,1,1,1]
-      """
+    Then the output array should have 4 items
 
   Scenario: Unique items
     Given the following JSON schema:

@@ -22,6 +22,11 @@ Then(/^the output should be a Ruby array$/) do
   expect(@output).to be_a(Array)
 end
 
+Then(/^the output array should have (\d+) items$/) do |count|
+  arr = JSON.parse(@output)
+  expect(arr.size).to eql count.to_i
+end
+
 Then(/^the "([^" ]*)" property of the JSON output should be a ([^ ]*)$/) do |prop, type|
   klass = Class.const_get(type)
   expect(JSON.parse(@output).fetch(prop).class).to eql klass
@@ -35,6 +40,11 @@ end
 Then(/^the output array should have no duplicate items$/) do
   output = JSON.parse(@output)
   expect(output.uniq).to eq output
+end
+
+Then(/^the "([^"]*)" key in the output hash should have a numeric value$/) do |key|
+  output = JSON.parse(@output)
+  expect(output.fetch(key)).to be_a Numeric
 end
 
 Then(/^JSON output should have (\d+) properties$/) do |number|
