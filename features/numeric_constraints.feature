@@ -99,5 +99,5 @@ Feature: Numeric constraints
     When I run the JSON data generator
     Then the JSON output should be:
       """json
-      {"wheels":8}
+      {"wheels":72}
       """
