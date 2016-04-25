@@ -7,6 +7,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.3.8)
     builder (3.2.2)
     coveralls (0.8.13)
       json (~> 1.8)
@@ -29,6 +30,8 @@ GEM
     docile (1.1.5)
     gherkin (3.2.0)
     json (1.8.3)
+    json-schema (2.6.1)
+      addressable (~> 2.3.8)
     multi_json (1.11.3)
     multi_test (0.1.2)
     rake (11.1.2)
@@ -63,6 +66,7 @@ DEPENDENCIES
   coveralls (~> 0.7)
   cucumber (~> 2.1)
   json (~> 1.7)
+  json-schema (~> 2.6)
   json_test_data!
   rake (~> 11.0)
   rspec (~> 3.4)
