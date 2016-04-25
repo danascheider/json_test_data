@@ -47,6 +47,11 @@ Then(/^the "([^"]*)" key in the output hash should have a numeric value$/) do |k
   expect(output.fetch(key)).to be_a Numeric
 end
 
+Then(/^the output should be an array of numbers$/) do
+  expect(JSON.parse(@output)).to be_a Array
+  expect(JSON.parse(@output).all? {|n| n.is_a? Numeric }).to be true
+end
+
 Then(/^JSON output should have (\d+) properties$/) do |number|
   expect(JSON.parse(@output).length).to eql number.to_i
 end
