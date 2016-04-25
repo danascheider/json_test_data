@@ -12,12 +12,6 @@ module JsonTestData
         num = new(min: minimum, max: maximum, factor: factor, type: schema.fetch(:type, "number").to_sym)
         num.adjust!
       end
-
-      private
-
-      def ensure_multiple_of(number, factor=1)
-        number % factor == 0 ? number : number * factor
-      end
     end
 
     attr_accessor :value, :maximum, :minimum, :type, :factor
