@@ -29,14 +29,10 @@ module JsonTestData
     end
 
     def step_size
-      puts "NUMBER: #{value}"
-      puts "MAXIMUM: #{maximum}"
-      puts "MINIMUM: #{minimum}"
-      puts "STEP SIZE: #{@step_size}"
-      puts ""
       return @step_size ||= is_int? ? 1 : 0.5 unless minimum && maximum
 
       @step_size ||= Number.between(min: minimum, max: maximum, integer: type == :integer) / 3
+      @step_size.round(2)
     end
 
     def ensure_multiple_of!
