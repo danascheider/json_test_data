@@ -9,11 +9,12 @@ module JsonTestData
         factor = schema.fetch(:multipleOf, nil)
         minimum, maximum = schema.fetch(:minimum, nil), schema.fetch(:maximum, nil)
 
-        num = new(min: minimum, max: maximum, factor: factor)
+        num = new(min: minimum, max: maximum, factor: factor, type: schema.fetch(:type, :integer))
+
         val = num.value
 
         val = if maximum && minimum
-                between(min: minimum, max: maximum, integer: schema.fetch(:type) == "")
+                between(min: minimum, max: maximum, integer: num.type == :integer)
               else
                 val
               end
@@ -33,15 +34,22 @@ module JsonTestData
       end
     end
 
-    attr_accessor :value
+    attr_accessor :value, :maximum, :minimum, :type
 
-    def initialize(min: minimum, max: maximum, factor: nil, value: nil)
+    def initialize(min: nil, max: nil, factor: nil, value: nil, type: nil)
       @factor, @minimum, @maximum = factor, min, max
       @value = value || @factor || 1
+      @type ||= :integer
     end
 
     def ensure_multiple_of!
       @value = factor unless value % factor == 0
+    end
+
+    def ensure_in_range!
+      between(maximum)
+      @value = maximum - 1 if value > maximum
+      @value = minimum + 1 if value < minimum
     end
   end
 end
