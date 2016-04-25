@@ -9,9 +9,5 @@ module JsonTestData
     def mean(*numbers)
       numbers.inject(:+).to_f.quo(numbers.length)
     end
-
-    def adjust(number:, cutoff:, step_size: 1)
-      cutoff + (step_size || 1)
-    end
   end
 end
