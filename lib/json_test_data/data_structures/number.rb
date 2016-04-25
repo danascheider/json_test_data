@@ -25,14 +25,14 @@ module JsonTestData
     def initialize(min: nil, max: nil, factor: nil, value: nil, type: nil)
       @factor, @minimum, @maximum = factor, min, max
       @value = value || @factor || 1
-      @type ||= :number
+      @type  = type || :number
     end
 
     def step_size
       return @step_size ||= is_int? ? 1 : 0.5 unless minimum && maximum
 
       @step_size ||= Number.between(min: minimum, max: maximum, integer: type == :integer) / 3
-      @step_size.to_i == @step_size ? @step_size.to_i : @step_size.round(2)
+      is_int? ? @step_size.to_i : @step_size.round(2)
     end
 
     def ensure_multiple_of!
@@ -71,17 +71,13 @@ module JsonTestData
       while !value_divisible_by_factor? || value_too_low? || value_too_high? || should_be_int_but_isnt?
         adjust_for_divisibility!
 
-        if value_too_high?
-          @value -= step_size
-        end
-
-        if value_too_low?
-          @value += step_size
-        end
+        @value -= step_size if value_too_high?
+        @value += step_size if value_too_low?
       end
 
       @value ||= 1
-      @value.to_i == @value ? @value.to_i : @value
+      puts "TYPE: #{type}"
+      @type == :number ? @value : @value.to_i
     end
   end
 end
