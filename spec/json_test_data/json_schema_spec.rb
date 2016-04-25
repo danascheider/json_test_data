@@ -169,10 +169,6 @@ describe JsonTestData::JsonSchema do
           }.to_json
         end
 
-        let(:output) do
-          [{:id => 1}].to_json
-        end
-
         it "nests the object" do
           example = JSON.parse(JsonTestData::JsonSchema.new(schema).generate_example)
           aggregate_failures do
