@@ -56,5 +56,22 @@ describe JsonTestData::String do
         expect(described_class.create(object)).to be_in enum
       end
     end
+
+    context "with a pattern" do
+      let(:object) do
+        {
+          type: "string",
+          pattern: '\d+'
+        }
+      end
+
+      it "returns a string" do
+        expect(described_class.create(object)).to be_a String
+      end
+
+      it "returns a string of numbers" do
+        expect(described_class.create(object)).to match(/\d+/)
+      end
+    end
   end
 end
