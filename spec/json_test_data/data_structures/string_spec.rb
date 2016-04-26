@@ -61,7 +61,7 @@ describe JsonTestData::String do
       let(:object) do
         {
           type: "string",
-          pattern: '\d+'
+          pattern: '\d{2,}.*'
         }
       end
 
