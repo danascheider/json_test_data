@@ -70,7 +70,7 @@ module JsonTestData
         object.fetch(:minItems, nil) || object[:minItems] = 1
 
         if object.fetch(:items, nil) && object.fetch(:items).has_key?(:type)
-          Array.new(object.fetch(:minItems)).map {|item| generate(object.fetch(:items)) }
+          Array.new(object.fetch(:minItems)).map { generate(object.fetch(:items)) }
         else
           Array.new(object.fetch(:minItems))
         end
