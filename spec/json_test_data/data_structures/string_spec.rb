@@ -73,5 +73,24 @@ describe JsonTestData::String do
         expect(described_class.create(object)).to match(/\d+/)
       end
     end
+
+    context "with a format" do
+      context "date-time" do
+        let(:object) do
+          {
+            type: "string",
+            format: "date-time"
+          }
+        end
+
+        let(:datetime_pattern) do
+          /^\d{4}(\-\d{2}){2}T\d{2}\:\d{2}\:\d{2}(Z|[\+\-]\d{2}\:\d{2})$/
+        end
+
+        it "generates a valid datetime" do
+          expect(described_class.create(object)).to match(datetime_pattern)
+        end
+      end
+    end
   end
 end
