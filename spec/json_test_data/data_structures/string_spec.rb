@@ -41,5 +41,20 @@ describe JsonTestData::String do
         expect(described_class.create(object).length).to eq 8
       end
     end
+
+    context "with enum" do
+      let(:enum) { ["foo", "bar", "baz"] }
+
+      let(:object) do
+        {
+          type: "string",
+          enum: enum
+        }
+      end
+
+      it "returns a string from the list" do
+        expect(described_class.create(object)).to be_in enum
+      end
+    end
   end
 end
