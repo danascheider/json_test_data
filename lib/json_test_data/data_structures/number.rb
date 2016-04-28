@@ -57,12 +57,15 @@ module JsonTestData
       type == :integer && !@value.is_a?(Integer)
     end
 
+    def adjust_by!(step_size)
+      @value -= step_size if value_too_high?
+      @value += step_size if value_too_low?
+    end
+
     def adjust!
       while !value_divisible_by_factor? || value_too_low? || value_too_high? || should_be_int_but_isnt?
         adjust_for_divisibility!
-
-        @value -= step_size if value_too_high?
-        @value += step_size if value_too_low?
+        adjust_by!(step_size)
       end
 
       @value ||= 1
