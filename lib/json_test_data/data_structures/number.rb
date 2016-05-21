@@ -6,6 +6,8 @@ module JsonTestData
 
     class << self
       def create(schema)
+        return schema.fetch(:enum).sample if schema.fetch(:enum, nil)
+
         factor = schema.fetch(:multipleOf, nil)
         minimum, maximum = schema.fetch(:minimum, nil), schema.fetch(:maximum, nil)
 

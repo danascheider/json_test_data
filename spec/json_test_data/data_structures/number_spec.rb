@@ -54,6 +54,20 @@ describe JsonTestData::Number do
       end
     end
 
+    context "enum constraint" do
+      let(:enum) { [ 5, 10, 15, 20, 25 ] }
+      let(:object) do
+        {
+          type: "number",
+          enum: enum
+        }
+      end
+
+      it "chooses from the given array" do
+        expect(described_class.create(object)).to be_in enum
+      end
+    end
+
     context "multiple constraints" do
       context "maximum and minimum" do
         let(:maximum) { 1 }
