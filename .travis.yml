@@ -6,8 +6,6 @@ rvm:
 sudo: false
 env:
   - COVERAGE=true
-before_install:
-  - gem install regxing --version 0.1.0.beta
 branches:
   only:
     - master
