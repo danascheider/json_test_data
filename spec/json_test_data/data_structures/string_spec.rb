@@ -108,6 +108,27 @@ describe JsonTestData::String do
           expect(described_class.create(object)).to match(email_pattern)
         end
       end
+
+      context "hostname" do
+        let(:object) do
+          {
+            type: "string",
+            format: "hostname"
+          }
+        end
+
+        let(:hostname_pattern) do
+          /^[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9]$/
+        end
+
+        it "generates a valid hostname" do
+          expect(described_class.create(object)).to match(hostname_pattern)
+        end
+      end
+
+      context "uri" do
+        #
+      end
     end
   end
 end

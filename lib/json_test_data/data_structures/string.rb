@@ -23,7 +23,8 @@ module JsonTestData
       def formats
         {
           "date-time" => /^\d{4}(\-\d{2}){2}T\d{2}\:\d{2}\:\d{2}(Z|[\+\-]\d{2}\:\d{2})$/,
-          "email"     => /^\S+@\S+\.\S{1,5}$/
+          "email"     => /^\S+@\S+\.\S{1,5}$/,
+          "hostname"  => /^[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9]$/
         }
       end
     end
