@@ -1,5 +1,5 @@
 require 'json'
-require 'regxing'
+require 'regexp-examples'
 
 require_relative './json_test_data/json_schema'
 

@@ -5,7 +5,7 @@ module JsonTestData
         return schema.fetch(:enum).sample if schema.fetch(:enum, nil)
 
         len = schema.fetch(:maxLength, nil) || schema.fetch(:minLength, nil) || 1
-        RegXing::Generator.new(/.{#{len}}/).generate!
+        /.{#{len}}/.random_example
       end
     end
   end
