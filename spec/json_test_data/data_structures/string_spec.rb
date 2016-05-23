@@ -91,6 +91,23 @@ describe JsonTestData::String do
           expect(described_class.create(object)).to match(datetime_pattern)
         end
       end
+
+      context "email" do
+        let(:object) do
+          {
+            type: "string",
+            format: "email"
+          }
+        end
+
+        let(:email_pattern) do
+          /^\S+@\S+\.\S{1,5}$/
+        end
+
+        it "generates a valid e-mail" do
+          expect(described_class.create(object)).to match(email_pattern)
+        end
+      end
     end
   end
 end
