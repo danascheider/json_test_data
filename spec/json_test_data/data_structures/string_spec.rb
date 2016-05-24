@@ -127,7 +127,20 @@ describe JsonTestData::String do
       end
 
       context "uri" do
-        #
+        let(:object) do
+          {
+            type: "string",
+            format: "uri"
+          }
+        end
+
+        let(:uri_pattern) do
+          /^https?\:\/\/\S{1,10}\.\S{1,10}\.\S{2,5}$/
+        end
+
+        it "generates a valid URI" do
+          expect(described_class.create(object)).to match(uri_pattern)
+        end
       end
     end
   end
