@@ -1,6 +1,6 @@
 require "coveralls"
 
-Coveralls.wear!
+Coveralls.wear! if ENV["COVERAGE"] == "true"
 
 require_relative "../../lib/json_test_data"
 require_relative "../../lib/json_test_data/json_schema"
