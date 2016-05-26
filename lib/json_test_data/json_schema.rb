@@ -45,8 +45,19 @@ module JsonTestData
         property.fetch(:type, nil) == "array"
       end
 
+      def resolve_rel(object, rel)
+        rel = rel.split("/").map(&:to_sym)[1..-1]
+        rel.each {|key| object = object.fetch(key) }
+        object
+      end
+
       def generate_object(object)
         obj = {}
+
+        if object.has_key?(:oneOf)
+          schema_to_be_used = object.fetch(:oneOf).sample
+          object = resolve_rel(object, schema_to_be_used.fetch(:"$rel"))
+        end
 
         if object.has_key?(:properties)
           object.fetch(:properties).each do |k, v|

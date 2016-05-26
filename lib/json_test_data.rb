@@ -1,7 +1,7 @@
-require 'json'
-require 'regexp-examples'
+require "json"
+require "regexp-examples"
 
-require_relative './json_test_data/json_schema'
+require_relative "./json_test_data/json_schema"
 
 module JsonTestData
   def self.generate!(schema, opts={})
