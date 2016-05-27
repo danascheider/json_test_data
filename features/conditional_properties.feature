@@ -7,44 +7,56 @@ Feature: Assign values conditionally
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "oneOf": [
-          { "$ref": "#/definitions/californiaAddress" },
-          { "$ref": "#/definitions/floridaAddress"}
+          { "$rel": "#/definitions/californiaAddress" },
+          { "$rel": "#/definitions/floridaAddress"}
         ],
         "definitions": {
           "californiaAddress": {
-            "street": { "type": "string" },
-            "city": {
-              "type": "string",
-              "enum": [
-                "San Diego",
-                "Los Angeles",
-                "San Francisco",
-                "Sacramento"
-              ],
+            "properties": {
+              "street": { "type": "string" },
+              "city": {
+                "type": "string",
+                "enum": [
+                  "San Diego",
+                  "Los Angeles",
+                  "San Francisco",
+                  "Sacramento"
+                ]
+              },
               "state": {
                 "type": "string",
                 "enum": [ "CA" ]
               },
               "zip": {
                 "type": "string",
-                "pattern": "\d{5}"
+                "pattern": "\\d{5}"
               }
             }
           },
           "floridaAddress": {
-            "street": { "type": "string" },
-            "city": {
-              "type": "string",
-              "enum": [
-                "Miami",
-                "Orlando",
-                "St. Petersburg",
-                "Tampa",
-                "Fort Lauderdale",
-                "Tallahassee",
-                "Hialeah",
-                "Jacksonville"
-              ]
+            "properties": {
+              "street": { "type": "string" },
+              "city": {
+                "type": "string",
+                "enum": [
+                  "Miami",
+                  "Orlando",
+                  "St. Petersburg",
+                  "Tampa",
+                  "Fort Lauderdale",
+                  "Tallahassee",
+                  "Hialeah",
+                  "Jacksonville"
+                ]
+              },
+              "state": {
+                "type": "string",
+                "enum": [ "FL" ]
+              },
+              "zip": {
+                "type": "string",
+                "pattern": "\\d{5}"
+              }
             }
           }
         }
