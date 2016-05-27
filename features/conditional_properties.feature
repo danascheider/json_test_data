@@ -12,43 +12,47 @@ Feature: Assign values conditionally
         ],
         "definitions": {
           "californiaAddress": {
-            "street": { "type": "string" },
-            "city": {
-              "type": "string",
-              "enum": [
-                "San Diego",
-                "Los Angeles",
-                "San Francisco",
-                "Sacramento"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [ "CA" ]
-            },
-            "zip": {
-              "type": "string",
-              "pattern": "\\d{5}"
+            "properties": {
+              "street": { "type": "string" },
+              "city": {
+                "type": "string",
+                "enum": [
+                  "San Diego",
+                  "Los Angeles",
+                  "San Francisco",
+                  "Sacramento"
+                ]
+              },
+              "state": {
+                "type": "string",
+                "enum": [ "CA" ]
+              },
+              "zip": {
+                "type": "string",
+                "pattern": "\\d{5}"
+              }
             }
           },
           "floridaAddress": {
-            "street": { "type": "string" },
-            "city": {
-              "type": "string",
-              "enum": [
-                "Miami",
-                "Orlando",
-                "St. Petersburg",
-                "Tampa",
-                "Fort Lauderdale",
-                "Tallahassee",
-                "Hialeah",
-                "Jacksonville"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "enum": [ "FL" ]
+            "properties": {
+              "street": { "type": "string" },
+              "city": {
+                "type": "string",
+                "enum": [
+                  "Miami",
+                  "Orlando",
+                  "St. Petersburg",
+                  "Tampa",
+                  "Fort Lauderdale",
+                  "Tallahassee",
+                  "Hialeah",
+                  "Jacksonville"
+                ]
+              },
+              "state": {
+                "type": "string",
+                "enum": [ "FL" ]
+              }
             }
           }
         }
