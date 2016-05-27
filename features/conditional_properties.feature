@@ -7,8 +7,8 @@ Feature: Assign values conditionally
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "oneOf": [
-          { "$ref": "#/definitions/californiaAddress" },
-          { "$ref": "#/definitions/floridaAddress"}
+          { "$rel": "#/definitions/californiaAddress" },
+          { "$rel": "#/definitions/floridaAddress"}
         ],
         "definitions": {
           "californiaAddress": {
@@ -20,15 +20,15 @@ Feature: Assign values conditionally
                 "Los Angeles",
                 "San Francisco",
                 "Sacramento"
-              ],
-              "state": {
-                "type": "string",
-                "enum": [ "CA" ]
-              },
-              "zip": {
-                "type": "string",
-                "pattern": "\d{5}"
-              }
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [ "CA" ]
+            },
+            "zip": {
+              "type": "string",
+              "pattern": "\\d{5}"
             }
           },
           "floridaAddress": {
@@ -45,6 +45,10 @@ Feature: Assign values conditionally
                 "Hialeah",
                 "Jacksonville"
               ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [ "FL" ]
             }
           }
         }
