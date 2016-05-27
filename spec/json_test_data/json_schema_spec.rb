@@ -60,7 +60,6 @@ describe JsonTestData::JsonSchema do
 
     describe "bigger examples" do
       context "when schema describes an object" do
-
         let(:schema) do
           {
             :"$schema"  => "http://json-schema.org/draft-04/schema#",
@@ -105,6 +104,69 @@ describe JsonTestData::JsonSchema do
           all_numbers = array.all? {|item| item.is_a?(Numeric) }
           expect(all_numbers).to be true
         end
+      end
+    end
+
+    describe "multiple possible schemas" do
+      let(:schema) do
+        {
+          :"$schema" => "http://json-schema.org/draft-04/schema#",
+          :type      => "object",
+          :oneOf     => [
+            { :"$ref" => "#/definitions/foo" },
+            { :"$ref" => "#/definitions/bar" }
+          ],
+          :definitions => {
+            :foo => {
+              :type => "object",
+              :required => [ "name", "age" ],
+              :properties => {
+                :name => { :type => "string", :enum => [ "Foo" ] },
+                :age => { :type => "integer" }
+              }
+            },
+            :bar => {
+              :type => "object",
+              :required => [ "first_name", "last_name" ],
+              :properties => {
+                :first_name => { :type => "string", :enum => [ "Bar" ] },
+                :last_name => { :type => "string" }
+              }
+            }
+          }
+        }.to_json
+      end
+
+      let(:foo_schema) do
+        {
+          :type => "object",
+          :required => [ "name", "age" ],
+          :properties => {
+            :name => { :type => "string", :enum => [ "Foo" ] },
+            :age => { :type => "integer" }
+          }
+        }.to_json
+      end
+
+      let(:bar_schema) do
+        {
+          :type => "object",
+          :required => [ "first_name", "last_name" ],
+          :properties => {
+            :first_name => { :type => "string", :enum => [ "Bar" ] },
+            :last_name => { :type => "string" }
+          }
+        }
+      end
+
+      it "generates an object" do
+        output = JsonTestData::JsonSchema.new(schema).generate_example
+        expect(JSON.parse(output)).to be_a Hash
+      end
+
+      it "matches one of the given schemas" do
+        output = JsonTestData::JsonSchema.new(schema).generate_example
+        expect(JSON.parse(output)).to match_one_of([foo_schema, bar_schema])
       end
     end
 
