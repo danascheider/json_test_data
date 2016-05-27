@@ -119,6 +119,7 @@ describe JsonTestData::JsonSchema do
           :definitions => {
             :foo => {
               :type => "object",
+              :required => [ "name", "age" ],
               :properties => {
                 :name => { :type => "string", :enum => [ "Foo" ] },
                 :age => { :type => "integer" }
@@ -126,6 +127,7 @@ describe JsonTestData::JsonSchema do
             },
             :bar => {
               :type => "object",
+              :required => [ "first_name", "last_name" ],
               :properties => {
                 :first_name => { :type => "string", :enum => [ "Bar" ] },
                 :last_name => { :type => "string" }
