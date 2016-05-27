@@ -51,16 +51,16 @@ module JsonTestData
         object
       end
 
+      def set_object(obj, schema)
+        schema.has_key?(:"$ref") ? resolve_ref(obj, schema.fetch(:"$ref")) : schema
+      end
+
       def generate_object(object)
         obj = {}
 
         if object.has_key?(:oneOf)
           schema_to_be_used = object.fetch(:oneOf).sample
-          object = if schema_to_be_used.fetch(:"$ref", nil)
-                     resolve_ref(object, schema_to_be_used.fetch(:"$ref"))
-                   else
-                     schema_to_be_used
-                   end
+          object = set_object(object, schema_to_be_used)
         end
 
         if object.has_key?(:properties)
