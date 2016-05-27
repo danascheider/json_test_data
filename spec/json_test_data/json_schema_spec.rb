@@ -113,8 +113,8 @@ describe JsonTestData::JsonSchema do
           :"$schema" => "http://json-schema.org/draft-04/schema#",
           :type      => "object",
           :oneOf     => [
-            { :"$rel" => "#/definitions/foo" },
-            { :"$rel" => "#/definitions/bar" }
+            { :"$ref" => "#/definitions/foo" },
+            { :"$ref" => "#/definitions/bar" }
           ],
           :definitions => {
             :foo => {
