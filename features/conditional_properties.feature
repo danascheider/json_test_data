@@ -12,6 +12,7 @@ Feature: Assign values conditionally
         ],
         "definitions": {
           "californiaAddress": {
+            "required": [ "street", "city", "state", "zip" ],
             "properties": {
               "street": { "type": "string" },
               "city": {
@@ -34,6 +35,7 @@ Feature: Assign values conditionally
             }
           },
           "floridaAddress": {
+            "required": [ "street", "city", "state" ],
             "properties": {
               "street": { "type": "string" },
               "city": {
