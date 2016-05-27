@@ -56,7 +56,11 @@ module JsonTestData
 
         if object.has_key?(:oneOf)
           schema_to_be_used = object.fetch(:oneOf).sample
-          object = resolve_ref(object, schema_to_be_used.fetch(:"$ref"))
+          object = if schema_to_be_used.fetch(:"$ref", nil)
+                     resolve_ref(object, schema_to_be_used.fetch(:"$ref"))
+                   else
+                     schema_to_be_used
+                   end
         end
 
         if object.has_key?(:properties)
