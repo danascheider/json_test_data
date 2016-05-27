@@ -3,6 +3,7 @@ module JsonTestData
     class << self
       def create(schema)
         return schema.fetch(:enum).sample if schema.fetch(:enum, nil)
+
         pattern(schema).random_example
       end
 
