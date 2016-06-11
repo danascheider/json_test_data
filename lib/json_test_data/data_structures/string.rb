@@ -3,11 +3,16 @@ module JsonTestData
     class << self
       def create(schema)
         return schema.fetch(:enum).sample if schema.fetch(:enum, nil)
+        return generate_date if schema.fetch(:format, nil) == "date-time"
 
         pattern(schema).random_example
       end
 
       private
+
+      def generate_date
+        DateTime.new(rand(2000..2100), rand(1..12), rand(1..28),rand(0..23), rand(60), rand(60)).iso8601
+      end
 
       def pattern(schema)
         if schema.fetch(:format, nil)
@@ -22,7 +27,6 @@ module JsonTestData
 
       def formats
         {
-          "date-time" => /^20\d{2}\-((0[1-9])|(1[0-2]))\-((0[1-9])|([1-2]\d))T(([0-1]\d)|(2[0-3]))\:[0-5]\d\:[0-5]\d(Z|[\+\-]\d{2}\:(0|3)0)$/,
           "email"     => /^\S+@\S+\.\S{1,5}$/,
           "hostname"  => /^[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9]$/,
           "uri"       => /^https?\:\/\/\S{1,10}\.\S{1,10}\.\S{2,5}$/
