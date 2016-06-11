@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    json_test_data (1.1.0)
+    json_test_data (1.1.1)
       regexp-examples (~> 1.2)
 
 GEM
