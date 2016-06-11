@@ -4,10 +4,18 @@ module JsonTestData
       def create(schema)
         return schema.fetch(:enum).sample if schema.fetch(:enum, nil)
 
-        pattern(schema).random_example
+        if schema.fetch(:format, nil) == "date-time"
+          generate_date
+        else
+          pattern(schema).random_example
+        end
       end
 
       private
+
+      def generate_date
+        DateTime.new(rand(2000..2100), rand(1..12), rand(1..28),rand(0..23), rand(60), rand(60)).iso8601
+      end
 
       def pattern(schema)
         if schema.fetch(:format, nil)
