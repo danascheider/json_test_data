@@ -11,7 +11,7 @@ module JsonTestData
       private
 
       def generate_date
-        DateTime.new(rand(2000..2100), rand(1..12), rand(1..28),rand(0..23), rand(60), rand(60)).iso8601
+        ::DateTime.new(rand(2000..2100), rand(1..12), rand(1..28),rand(0..23), rand(60), rand(60)).iso8601
       end
 
       def pattern(schema)
