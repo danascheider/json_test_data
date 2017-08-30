@@ -3,10 +3,11 @@ require_relative "./data_structures/number"
 
 module JsonTestData
   class JsonSchema
-    attr_accessor :schema
+    attr_accessor :schema, :handler
 
-    def initialize(schema)
+    def initialize(schema, handler = nil)
       @schema = JSON.parse(schema, symbolize_names: true)
+      @handler = handler
     end
 
     def generate_example
@@ -14,7 +15,9 @@ module JsonTestData
     end
 
     private
-      def generate_data(obj)
+      def generate_data(obj, key)
+        return handler.get_data(key, obj) if handler && handler.manages_key?(key)
+
         case obj.fetch(:type)
         when "number"
           JsonTestData::Number.create(obj)
@@ -27,13 +30,13 @@ module JsonTestData
         end
       end
 
-      def generate(obj)
+      def generate(obj, key = nil)
         if is_object?(obj)
           generate_object(obj)
         elsif is_array?(obj)
           generate_array(obj)
         else
-          generate_data(obj)
+          generate_data(obj, key)
         end
       end
 
@@ -67,7 +70,7 @@ module JsonTestData
           object.fetch(:properties).each do |k, v|
             obj[k]  = nil unless v.has_key?(:type)
 
-            obj[k]  = generate(v)
+            obj[k]  = generate(v, k)
           end
         end
 
