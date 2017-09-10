@@ -65,7 +65,10 @@ module JsonTestData
 
         if object.has_key?(:properties)
           object.fetch(:properties).each do |k, v|
-            obj[k]  = nil unless v.has_key?(:type)
+            unless v.has_key?(:type)
+              obj[k]  = nil
+              next
+            end
 
             obj[k]  = generate(v)
           end
