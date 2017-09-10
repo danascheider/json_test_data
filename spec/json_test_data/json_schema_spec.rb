@@ -312,5 +312,23 @@ describe JsonTestData::JsonSchema do
         end
       end
     end
+
+    describe 'when type is missing' do
+      let(:schema) do
+          {
+            '$schema': 'http://json-schema.org/draft-04/schema#',
+            type: 'object',
+            properties: {
+              user: {},
+              title: { type: 'string', enum: [ 'Foobar' ] },
+            }
+          }.to_json
+      end
+
+      it 'returns nil' do
+        json_schema = JsonTestData::JsonSchema.new(schema)
+        expect(json_schema.generate_example).to eq({ user: nil, title: 'Foobar' }.to_json)
+      end
+    end
   end
 end
