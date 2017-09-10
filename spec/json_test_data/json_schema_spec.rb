@@ -316,11 +316,11 @@ describe JsonTestData::JsonSchema do
     describe 'when type is missing' do
       let(:schema) do
           {
-            '$schema': 'http://json-schema.org/draft-04/schema#',
-            type: 'object',
-            properties: {
-              user: {},
-              title: { type: 'string', enum: [ 'Foobar' ] },
+            :'$schema' => 'http://json-schema.org/draft-04/schema#',
+            :type => 'object',
+            :properties => {
+              :user => {},
+              :title => { :type => 'string', :enum => [ 'Foobar' ] },
             }
           }.to_json
       end
