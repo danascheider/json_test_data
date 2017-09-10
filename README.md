@@ -12,11 +12,8 @@ gem "json_test_data", "~> 1.2.0"
 ```
 To use it, first require it, then generate the test data using:
 ```ruby
-data = JsonTestData.generate!(schema, handler)
+data = JsonTestData.generate!(schema)
 ```
-The optional `handler` argument is an object that exposes the methods `manages_key?(key)` and
-`get_data(key, obj)`. This object can be used to create corresponding database objects, etc.
-
 If you would prefer to return a Ruby object instead of a JSON object, simply include the `:ruby` option:
 ```ruby
 data = JsonTestData.generate!(schema, ruby: true)
