@@ -21,5 +21,32 @@ data = JsonTestData.generate!(schema, ruby: true)
 
 The input that you put into it must be valid [JSON schema](http://json-schema.org). The top-level object must have a `:type` key indicating the type of object to be generated ("object", "array", "string", etc.).
 
+### Using Optional Handlers
+
+In the case where you need to generate additional data or perform other tasks when generating your JSON test data, you can pass
+in an optional handler to the `JsonTestData.generate!` method. The handler class must expose two methods: `manages_key?` and
+`get_data`. A handler class might look like:
+```ruby
+class Handler
+  def manages_key?(key)
+    %i(user_id).includes?(key)
+  end
+
+  def get_data(key, obj)
+    case key
+    when :user_id
+      # From a json file with valid mapped user_ids
+       JSON.parse(File.read(users.json)).collect{|users| user['id'] }).sample
+    else
+      raise 'invalid key'
+    end
+  end
+end
+```
+This can then be passed into the generator like this:
+```ruby
+data = JsonTestData.generate!(schema, handler: Handler.new)
+```
+
 ## Contribute
 The JSON Test Data Generator is in its infancy and contributions are much appreciated. Please include passing tests with all pull requests, and file an issue report indicating what you'd like to work on. I'm also happy to get issue reports that do not come with pull requests, but can't guarantee I'll actually write whatever it is you want JSON Test Data to do. I strongly encourage pull requests adding documentation!
