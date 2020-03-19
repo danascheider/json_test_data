@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "cucumber", "~> 2.1"
   s.add_development_dependency "rspec", "~> 3.4"
-  s.add_development_dependency "json", "~> 1.7"
+  s.add_development_dependency "json", "~> 2.3"
   s.add_development_dependency "json-schema", "~> 2.6"
   s.add_development_dependency "rake", "~> 11.0"
   s.add_development_dependency "coveralls", "~> 0.7"
