@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module JsonTestData
   module NumberHelper
     def between(min:, max:, integer: false)

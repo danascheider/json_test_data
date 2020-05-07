@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "./helpers/number_helper"
 
 module JsonTestData
@@ -16,7 +18,7 @@ module JsonTestData
       end
     end
 
-    attr_accessor :value, :maximum, :minimum, :type, :factor
+    attr_accessor :maximum, :minimum, :type, :factor
 
     def initialize(min: nil, max: nil, factor: nil, value: nil, type: nil)
       @factor, @minimum, @maximum = factor, min, max
@@ -25,10 +27,10 @@ module JsonTestData
     end
 
     def step_size
-      return @step_size ||= is_int? ? 1 : 0.5 unless minimum && maximum
+      return is_int? ? 1 : 0.5 unless minimum && maximum
 
-      @step_size ||= Number.between(min: minimum, max: maximum, integer: type == :integer) / 3
-      is_int? ? @step_size.to_i : @step_size.round(2)
+      step_size = Number.between(min: minimum, max: maximum, integer: type == :integer) / 3
+      is_int? ? step_size.to_i : step_size.round(2)
     end
 
     def adjust_for_divisibility!
@@ -70,8 +72,8 @@ module JsonTestData
         adjust_by!(step_size)
       end
 
-      @value ||= 1
-      @type == :number ? @value : @value.to_i
+      value ||= 1
+      type == :number ? @value : @value.to_i
     end
   end
 end

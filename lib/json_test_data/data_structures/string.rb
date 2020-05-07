@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module JsonTestData
   class String
     class << self
