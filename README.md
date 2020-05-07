@@ -36,7 +36,7 @@ class Handler
     case key
     when :user_id
       # From a json file with valid mapped user_ids
-       JSON.parse(File.read(users.json)).collect{|users| user['id'] }).sample
+       JSON.parse(File.read('users.json')).collect {|users| user['id'] }).sample
     else
       raise 'invalid key'
     end

@@ -7,7 +7,7 @@ module JsonTestData
     private
 
     def mean(*numbers)
-      numbers.inject(:+).to_f.quo(numbers.length)
+      numbers.inject(&:+).to_f.quo(numbers.length)
     end
   end
 end
