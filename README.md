@@ -48,5 +48,12 @@ This can then be passed into the generator like this:
 data = JsonTestData.generate!(schema, handler: Handler.new)
 ```
 
+## Ruby Versions
+
+As of version 1.2.1, JSON Test Data is no longer tested on Ruby versions < 2.4.0. This is because of the challenges of
+`openssl` compatibility - or lack thereof - between Ruby < 2.4.0 and Ruby >= 2.4.0. Still, I'm trying to keep this gem
+backwards compatible to Ruby 2.1 until at least the next major release. If you notice any incompatibilities with Ruby
+< 2.4.0, please open an issue report with as many details as possible.
+
 ## Contribute
 The JSON Test Data Generator is in its infancy and contributions are much appreciated. Please include passing tests with all pull requests, and file an issue report indicating what you'd like to work on. I'm also happy to get issue reports that do not come with pull requests, but can't guarantee I'll actually write whatever it is you want JSON Test Data to do. I strongly encourage pull requests adding documentation!
